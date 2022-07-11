@@ -1,4 +1,3 @@
-import React from 'react'
 import ParallaxItem from '../components/ParallaxItem'
 
 import './Header.css'
