@@ -25,7 +25,7 @@ function ParallaxItem(props: ParallaxProps):JSX.Element {
 
   const rotate = Math.round(Math.random() * 360) + 'deg'
   return (
-    <div className="Parallax-layer"
+    <div className="parallax-layer"
       ref={divRef}
       style={{top: props.top, left: props.left}}
     >

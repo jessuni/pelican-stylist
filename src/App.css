@@ -6,7 +6,7 @@ footer {
   padding: 5vh calc(10px + 4vmin);
   box-sizing: border-box;
 }
-.Button {
+.button {
   font-family: inherit;
   text-transform: uppercase;
   font-size: 18px;
@@ -27,13 +27,13 @@ footer {
   appearance: button;
   font-weight: 900;
 }
-a.Button {
+a.button {
   text-decoration: none;
 }
-.Button:active {
+.button:active {
   top: 2px;
 }
-.Button::after {
+.button::after {
   content: '';
   position: absolute;
   z-index: 0;
