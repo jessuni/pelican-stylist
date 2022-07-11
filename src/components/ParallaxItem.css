@@ -1,0 +1,9 @@
+.Parallax-layer {
+  z-index: 4;
+  position: absolute;
+  width: 64px;
+}
+.Parallax-layer img {
+  width: 100%;
+  height: 100%;
+}
