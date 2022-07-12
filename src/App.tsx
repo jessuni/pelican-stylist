@@ -1,5 +1,6 @@
-import Header from './views/Header'
 import './App.css'
+
+import Header from '@/views/Header'
 
 
 function App() {
