@@ -2,7 +2,7 @@ import './Header.css'
 
 import ParallaxItem from '@/components/ParallaxItem'
 
-import { ReactComponent as HeroImg } from 'assets/nyanko.svg'
+import { ReactComponent as HeroImg } from '@/assets/nyanko.svg'
 import logo_large from '@/assets/title@2x.png'
 import logo_small from '@/assets/title@1x.png'
 import purple_shorts from '@/assets/purple_shorts.svg'
