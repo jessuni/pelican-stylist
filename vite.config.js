@@ -13,6 +13,7 @@ export default ({ mode }) => {
     resolve: {
       alias: {
         "@": resolve(__dirname, 'src'),
+        "@data": resolve(__dirname, 'data'),
       },
     },
   })
