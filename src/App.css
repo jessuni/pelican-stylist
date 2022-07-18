@@ -1,5 +1,4 @@
 header,
-main,
 footer {
   width: 100%;
   height: var(--height);
@@ -26,12 +25,14 @@ footer {
   line-height: 1.15;
   appearance: button;
   font-weight: 900;
+  /* transition: top cubic-bezier(1, 0, 0, 1) 0.2s; */
 }
 a.button {
   text-decoration: none;
 }
 .button:active {
-  top: 2px;
+  transform: translateY(2px);
+  /* top: 2px; */
 }
 .button::after {
   content: '';

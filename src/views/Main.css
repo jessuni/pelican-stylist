@@ -1,0 +1,54 @@
+.main {
+  border-image: url('@/assets/border.png') 15 stretch;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  width: 100%;
+  min-height: calc(2 * var(--height));
+  padding: 5vh calc(10px + 4vmin);
+  box-sizing: border-box;
+  background-image: url('@/assets/galaxy_overlay.png'), linear-gradient(0deg, var(--bg-light-color-hex) 0%, var(--bg-light-color-hex) 100%);
+  background-blend-mode: soft-light;
+  position: relative;
+}
+.user-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 10vw;
+  z-index: 0;
+}
+.user {
+  display: flex;
+  flex-flow: row nowrap;
+  min-height: 50vh;
+  align-items: center;
+  position: sticky;
+  top: 30vh;
+  transform: translateX(0);
+  transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+}
+.user._overview {
+  transform: translateX(33%);
+}
+.user-info div,
+.user-outfit div {
+  width: 48px;
+  height: 48px;
+  /* TODO: delete background & border & margin */
+  background: violet;
+  border: 1px solid black;
+  margin-bottom: 0.2em;
+}
+.user-display {
+  /* TODO: reset width and height based on image tile */
+  min-height: 192px;
+  width: 128px;
+  margin: 0 0.5em;
+}
+.edit {
+  margin-left: calc(10vw + 5vw + 240px);
+  position: relative;
+  z-index: 1;
+}
