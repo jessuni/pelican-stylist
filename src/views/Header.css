@@ -7,18 +7,8 @@
   height: 100%;
   top: 0;
   left: 0;
-  overflow: hidden;
-}
-.header-bg div {
-  position: absolute;
-  /* width: 100%; */
-  /* height: 100%; */
-  width: 266vw;
-  height: 266vw;
-  transform: rotate(-45deg) translate(-30%, -5%);
-  background-image: linear-gradient(214deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0.5) 50%), url('@/assets/galaxy_overlay.png');
-  /* background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%), url('@/assets/galaxy_overlay.png'); */
-  /* clip-path: polygon(75% 0vmax, -15vmax 100%, 130vmax 100%); */
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%), url('@/assets/galaxy_overlay.png');
+  clip-path: polygon(75% 0, min(-200px, calc(100vw - 1000px)) 100%, max(105vmax, calc(1000px - 10vw)) 100%);
   mix-blend-mode: overlay;
   user-select: none;
   pointer-events: none;

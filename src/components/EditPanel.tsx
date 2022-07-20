@@ -1,48 +1,48 @@
 import './EditPanel.css'
 
-import { useState } from 'react'
+import { ReactElement, useState } from 'react'
+import TabItem from './TabItem'
 import { Item } from 'types'
-import EditPanelList from './EditPanelList'
+
 import hat_icon from '@/assets/hat.svg'
 import top_icon from '@/assets/top.svg'
 import bottom_icon from '@/assets/bottom.svg'
-import footwear_icon from '@/assets/footwear.svg'
+import shoes_icon from '@/assets/footwear.svg'
 
 const ICONS = {
   hats: hat_icon,
   tops: top_icon,
   bottoms: bottom_icon,
-  footwear: footwear_icon,
+  shoes: shoes_icon,
 }
 
-type EditPanelProps = {
+type Props = {
   data: { [key: string]: Item[] }
+  children: ReactElement[]
 }
 
-function EditPanel({ data }: EditPanelProps) {
-  const [active, setActive] = useState<string|null>(null)
-  let tabItems: JSX.Element[] = []
-  let contentLists: JSX.Element[] = []
-  Object.keys(data).forEach(key => {
-    if (!active) {
-      setActive(key)
-    }
-    // TODO: isActive
-    tabItems.push(
-      <li className="edit-tabs-item" key={key}>
-        <img alt={key} src={ICONS[key as keyof typeof ICONS]} />
-      </li>
+function EditPanel({ children }: Props): JSX.Element {
+  const [activeTab, setActiveTab] = useState<string>('hats')
+  const tabItems = children.map(item => {
+    const key = item.props.title
+    return (
+      <TabItem
+        key={key}
+        src={ICONS[key as keyof typeof ICONS]}
+        title={key}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab} />
     )
-    contentLists.push(<EditPanelList list={data[key]} key={key} />)
   })
   return (
-    <div>
-      <nav className="edit-tabs">
-        <ul>
+    <div className="edit-panel">
+      <nav>
+        <ul className="edit-tabs">
           {tabItems}
+          <div className="tab-glider"></div>
         </ul>
       </nav>
-      {contentLists}
+      {children.filter(item => item.props.title === activeTab)}
     </div>
   )
 }

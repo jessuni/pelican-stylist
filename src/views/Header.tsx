@@ -10,7 +10,7 @@ import purple_shorts from '@/assets/purple_shorts.svg'
 function Header() {
   return(
     <header className="header" id="cover">
-    <div className="header-bg"><div></div></div>
+    <div className="header-bg"></div>
     <div className="header-content">
       <a className="header-logo"
         href="/"

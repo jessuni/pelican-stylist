@@ -1,14 +1,18 @@
 .main {
   border-image: url('@/assets/border.png') 15 stretch;
-  border-top: 20px solid transparent;
-  border-bottom: 20px solid transparent;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
   width: 100%;
   min-height: calc(2 * var(--height));
-  padding: 5vh calc(10px + 4vmin);
   box-sizing: border-box;
-  background-image: url('@/assets/galaxy_overlay.png'), linear-gradient(0deg, var(--bg-light-color-hex) 0%, var(--bg-light-color-hex) 100%);
-  background-blend-mode: soft-light;
   position: relative;
+  background-image: url('@/assets/galaxy_overlay.png'), linear-gradient(0deg, var(--bg-light-color) 0%, var(--bg-light-color) 100%);
+  background-blend-mode: soft-light;
+}
+.user-container,
+.edit,
+.export {
+  padding: 5vh calc(10px + 4vmin);
 }
 .user-container {
   position: absolute;
@@ -22,7 +26,6 @@
 .user {
   display: flex;
   flex-flow: row nowrap;
-  min-height: 50vh;
   align-items: center;
   position: sticky;
   top: 30vh;
@@ -48,7 +51,7 @@
   margin: 0 0.5em;
 }
 .edit {
-  margin-left: calc(10vw + 5vw + 240px);
   position: relative;
   z-index: 1;
+  min-height: 100vh;
 }

@@ -25,14 +25,14 @@ footer {
   line-height: 1.15;
   appearance: button;
   font-weight: 900;
-  /* transition: top cubic-bezier(1, 0, 0, 1) 0.2s; */
+  font-family: var(--featured-font);
+  cursor: pointer;
 }
 a.button {
   text-decoration: none;
 }
 .button:active {
   transform: translateY(2px);
-  /* top: 2px; */
 }
 .button::after {
   content: '';
@@ -43,5 +43,8 @@ a.button {
   width: 100%;
   height: 100%;
   box-shadow: inset -4px -4px var(--button-shadow-color);
+}
+.button.icon-button {
+  padding: 0.2em;
 }
 
