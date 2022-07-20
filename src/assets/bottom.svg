@@ -1,9 +1,1 @@
-<?xml version="1.0" standalone="yes"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-<path fill="#ffffff" d="M0 0L0 48L48 48L48 0L0 0z"/>
-<path fill="#1d1d1d" d="M8 13L8 37L40 37L40 13L8 13z"/>
-<path fill="#616161" d="M12 17L12 33L16 33L16 21L28 21L28 33L32 33L32 21L36 21L36 17L32 17L32 21L28 21L28 17L12 17z"/>
-<path fill="#7c7c7c" d="M28 17L28 21L32 21L32 17L28 17M16 21L16 33L20 33L20 21L16 21z"/>
-<path fill="#3b3b3b" d="M24 21L24 25L28 25L28 21L24 21z"/>
-<path fill="#7c7c7c" d="M32 21L32 33L36 33L36 21L32 21z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path fill="#1d1d1d" d="M8 13v24h32V13H8z"/><path fill="#616161" d="M12 17v16h4V21h12v12h4V21h4v-4h-4v4h-4v-4H12z"/><path fill="#7c7c7c" d="M28 17v4h4v-4h-4m-12 4v12h4V21h-4z"/><path fill="#3b3b3b" d="M24 21v4h4v-4h-4z"/><path fill="#7c7c7c" d="M32 21v12h4V21h-4z"/></svg>

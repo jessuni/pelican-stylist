@@ -1,12 +1,1 @@
-<?xml version="1.0" standalone="yes"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-<path fill="#ffffff" d="M0 0L0 48L48 48L48 0L0 0z"/>
-<path fill="#262626" d="M21 9L18 12C18.0135 15.1942 17.5971 17.2708 21 18L21 21L18 24L12 21L9 21L6 24L6 33L12 39L21 39L21 36L36 36L42 30C42 26.356 43.2169 21.9036 39 21L39 18L42 18L42 12L39 9L21 9z"/>
-<path fill="#787878" d="M21 12L24 18L36 18L39 12L36 15C31.614 15 26.6146 16.0329 24 12L21 12z"/>
-<path fill="#595959" d="M24 12L24 15L27 15L27 12L24 12M33 12L33 15L36 15L36 12L33 12M21 15L21 18L24 18L24 15L21 15M36 15L36 18L39 18L39 15L36 15z"/>
-<path fill="#4d4d4d" d="M27 18L27 21L33 21L36 24L36 27L33 30L27 30L27 33L36 33L39 30L39 21L33 21L33 18L27 18z"/>
-<path fill="#595959" d="M24 21L24 24L30 24L30 27L24 27L24 30L18 30L18 33L27 33L27 30L33 30L36 27L36 24L33 21L24 21z"/>
-<path fill="#787878" d="M9 24L9 30L12 33L18 33L18 30L24 30L24 27L30 27L30 24L21 24L21 27L12 24L9 24z"/>
-<path fill="#595959" d="M18 24L18 27L21 27L21 24L18 24M9 30L9 33L12 33L12 30L9 30z"/>
-<path fill="#4d4d4d" d="M12 33L12 36L21 36L21 33L12 33z"/>
-</svg>
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#252525" d="M21 9h18v3H21zM18 12h3v6h-3z"/><path fill="#767676" d="M21 12h3v3h-3z"/><path fill="#585858" d="M24 12h3v3h-3z"/><path fill="#252525" d="M27 12h6v3h-6z"/><path fill="#585858" d="M33 12h3v3h-3z"/><path fill="#767676" d="M36 12h3v3h-3z"/><path fill="#252525" d="M39 12h3v6h-3z"/><path fill="#585858" d="M21 15h3v3h-3z"/><path fill="#767676" d="M24 15h12v3H24z"/><path fill="#585858" d="M36 15h3v3h-3z"/><path fill="#252525" d="M21 18h6v3h-6z"/><path fill="#4c4c4c" d="M27 18h6v3h-6z"/><path fill="#252525" d="M33 18h6v3h-6zM9 21h3v3H9zM18 21h6v3h-6z"/><path fill="#585858" d="M24 21h9v3h-9z"/><path fill="#4c4c4c" d="M33 21h3v3h-3zM36 21h3v9h-3z"/><path fill="#252525" d="M39 21h3v9h-3zM6 24h3v9H6z"/><path fill="#767676" d="M9 24h3v6H9z"/><path fill="#252525" d="M12 24h6v3h-6z"/><path fill="#585858" d="M18 24h3v3h-3z"/><path fill="#767676" d="M21 24h9v3h-9z"/><path fill="#585858" d="M30 24h6v3h-6z"/><path fill="#767676" d="M12 27h12v3H12z"/><path fill="#585858" d="M24 27h9v3h-9z"/><path fill="#4c4c4c" d="M33 27h3v3h-3z"/><path fill="#585858" d="M9 30h3v3H9z"/><path fill="#767676" d="M12 30h6v3h-6z"/><path fill="#585858" d="M18 30h9v3h-9z"/><path fill="#4c4c4c" d="M27 30h9v3h-9z"/><path fill="#252525" d="M36 30h3v3h-3zM9 33h3v3H9z"/><path fill="#4c4c4c" d="M12 33h9v3h-9z"/><path fill="#252525" d="M21 33h15v3H21zM12 36h9v3h-9z"/></svg>
