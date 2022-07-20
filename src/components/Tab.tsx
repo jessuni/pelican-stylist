@@ -1,4 +1,4 @@
-import './EditPanel.css'
+import './Tab.css'
 
 import { ReactElement, useState } from 'react'
 import TabItem from './TabItem'
@@ -21,7 +21,7 @@ type Props = {
   children: ReactElement[]
 }
 
-function EditPanel({ children }: Props): JSX.Element {
+function Tab({ children }: Props): JSX.Element {
   const [activeTab, setActiveTab] = useState<string>('hats')
   const tabItems = children.map(item => {
     const key = item.props.title
@@ -35,9 +35,9 @@ function EditPanel({ children }: Props): JSX.Element {
     )
   })
   return (
-    <div className="edit-panel">
+    <div className="tab">
       <nav>
-        <ul className="edit-tabs">
+        <ul className="tab-items">
           {tabItems}
           <div className="tab-glider"></div>
         </ul>
@@ -47,4 +47,4 @@ function EditPanel({ children }: Props): JSX.Element {
   )
 }
 
-export default EditPanel
+export default Tab

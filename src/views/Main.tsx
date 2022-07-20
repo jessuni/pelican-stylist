@@ -1,7 +1,7 @@
 import './Main.css'
 
 import { useRef } from 'react'
-import EditPanel from '@/components/EditPanel'
+import Tab from '@/components/Tab'
 import TabContent from '@/components/TabContent'
 import useIntersection from '@/composables/useIntersection'
 
@@ -17,12 +17,12 @@ function Main(): JSX.Element {
   return (
     <main className="main" id="main">
       <section className="edit">
-        <EditPanel data={{ footwear, hats, tops, bottoms }}>
+        <Tab data={{ footwear, hats, tops, bottoms }}>
           <TabContent title="hats" list={hats} />
           <TabContent title="tops" list={tops} />
           <TabContent title="bottoms" list={bottoms} />
           <TabContent title="shoes" list={footwear} />
-        </EditPanel>
+        </Tab>
       </section>
       <section className="user-container">
         <div className={`user${inViewport ? ' _overview' : ''}`}>

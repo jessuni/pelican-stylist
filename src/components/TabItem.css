@@ -1,10 +1,6 @@
 .tab-item {
   margin-right: 0.2em;
-}
-.tab-item button {
   padding: 0.1em 0.4em;
-  background: transparent;
-  border: 0;
   color: var(--tab-color);
   display: flex;
   align-items: center;
@@ -17,13 +13,18 @@
   transition: color 0.2s linear;
   cursor: pointer;
 }
-.tab-item.active button {
-  color: var(--tab-active-color);
+.tab-item input {
+  display: none;
+  appearance: none;
 }
 .tab-item img {
-  width: 2.5em;
-  height: 2.5em;
+  width: 2em;
+  height: 2em;
 }
 .tab-item span {
-  margin-left: 0.4em;
+  margin-left: 0.3em;
+  font-size: 0.83em;
+}
+.tab-item.active span {
+  color: var(--tab-active-color);
 }

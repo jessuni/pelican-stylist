@@ -1,11 +1,11 @@
-.edit-panel {
+.tab {
   margin-left: calc(10vw + 5vw + 240px);
   padding: 0 8vw;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
 }
-.edit-panel nav {
+.tab nav {
   background: rgba(255, 255, 255, 0.3);
   border-radius: 100vw;
   padding: 0.4em;
@@ -15,7 +15,7 @@
   justify-content: flex-start;
   width: fit-content;
 }
-.edit-tabs {
+.tab-items {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -25,7 +25,7 @@
   justify-content: flex-start;
   position: relative;
 }
-.edit-tabs * {
+.tab-item {
   z-index: 2;
 }
 .tab-glider {
@@ -40,24 +40,24 @@
   z-index: 1;
   transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.2s;
 }
-.edit-tabs li:nth-of-type(1).active ~ .tab-glider {
+label.tab-item:nth-of-type(1).active ~ .tab-glider {
   transform: translateX(0);
 }
-.edit-tabs li:nth-of-type(2).active ~.tab-glider {
+label.tab-item:nth-of-type(2).active ~.tab-glider {
   transform: translateX(calc(100% + 0.2em));
 }
-.edit-tabs li:nth-of-type(3).active ~.tab-glider {
+label.tab-item:nth-of-type(3).active ~.tab-glider {
   transform: translateX(calc(2 * (100% + 0.2em)));
 }
-.edit-tabs li:nth-of-type(4).active ~.tab-glider {
+label.tab-item:nth-of-type(4).active ~.tab-glider {
   transform: translateX(calc(3 * (100% + 0.2em)));
 }
-.edit-tabs li:nth-of-type(5).active ~.tab-glider {
+label.tab-item:nth-of-type(5).active ~.tab-glider {
   transform: translateX(calc(4 * (100% + 0.2em)));
 }
-.edit-tabs li:nth-of-type(6).active ~.tab-glider {
+label.tab-item:nth-of-type(6).active ~.tab-glider {
   transform: translateX(calc(5 * (100% + 0.2em)));
 }
-.edit-tabs li:nth-of-type(7).active ~.tab-glider {
+label.tab-item:nth-of-type(7).active ~.tab-glider {
   transform: translateX(calc(6 * (100% + 0.2em)));
 }
