@@ -3,19 +3,26 @@ import { Item } from 'types'
 
 type Props = {
   list: Item[]
-  title: string
+  title: string,
+  active: number
+  setActive: (id: number) => void
 }
 
-function TabContent({ list }: Props): JSX.Element {
+function TabContent({ list, active, setActive }: Props): JSX.Element {
   return (
-    <ul className="item-list">
-      {list.map(item => (
-        <li className="item" key={item.id}>
-          <button>
+    <ul className="tab-list">
+      {list.map(item => {
+        let className = 'tab-list_item'
+        if (item.id === active) {
+          className += ' active'
+        }
+      return (
+        <li className={className} key={item.id}>
+          <button onClick={() => setActive(item.id)}>
             <img src={item.img} alt={item.name}></img>
           </button>
         </li>
-      ))}
+      )})}
     </ul>
   )
 }

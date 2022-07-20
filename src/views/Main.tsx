@@ -1,6 +1,6 @@
 import $style from './Main.module.css'
 
-import { useRef } from 'react'
+import { useRef,useState } from 'react'
 import Tab from '@/components/Tab'
 import TabContent from '@/components/TabContent'
 import useIntersection from '@/composables/useIntersection'
@@ -13,15 +13,18 @@ import bottoms from '@data/bottoms.json'
 function Main(): JSX.Element {
   const exportElRef = useRef<HTMLElement>(null)
   const inViewport = useIntersection(exportElRef)
-
+  const [shoes, setShoes] = useState<number>(1001)
+  const [hat, setHat] = useState<number>(2001)
+  const [top, setTop] = useState<number>(3001)
+  const [bottom, setBottom] = useState<number>(4001)
   return (
     <main className={$style.main} id="main">
       <section className={$style.edit}>
         <Tab data={{ footwear, hats, tops, bottoms }}>
-          <TabContent title="hats" list={hats} />
-          <TabContent title="tops" list={tops} />
-          <TabContent title="bottoms" list={bottoms} />
-          <TabContent title="shoes" list={footwear} />
+          <TabContent title="hats" list={hats} setActive={setHat} active={hat} />
+          <TabContent title="tops" list={tops} setActive={setTop} active={top} />
+          <TabContent title="bottoms" list={bottoms} setActive={setBottom} active={bottom} />
+          <TabContent title="shoes" list={footwear} setActive={setShoes} active={shoes} />
         </Tab>
       </section>
       <section className={$style.user_container}>

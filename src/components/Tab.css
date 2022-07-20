@@ -37,6 +37,7 @@
   width: 100px;
   border-radius: 100vw;
   background: var(--tab-bg-color);
+  box-shadow: var(--tab-shadow);
   z-index: 1;
   transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.2s;
 }

@@ -10,8 +10,13 @@
   width: 100px;
   justify-content: center;
   box-sizing: border-box;
-  transition: color 0.2s linear;
   cursor: pointer;
+}
+.tab-item.active {
+  border-radius: 100vw;
+  background: var(--tab-bg-color);
+  box-shadow: var(--tab-shadow);
+  transition: color 0.2s linear, background-color 0s linear 0.2s, box-shadow 0s linear 0.2s;
 }
 .tab-item input {
   display: none;
@@ -20,6 +25,7 @@
 .tab-item img {
   width: 2em;
   height: 2em;
+  mix-blend-mode: screen;
 }
 .tab-item span {
   margin-left: 0.3em;

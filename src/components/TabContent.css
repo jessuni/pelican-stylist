@@ -1,4 +1,4 @@
-.item-list {
+.tab-list {
   width: fit-content;
   overflow-y: auto;
   display: grid;
@@ -7,11 +7,27 @@
   height: calc(5 * var(--cell-width));
   grid-gap: 0.2em;
   list-style: none;
-  padding: 1em 1em 1em 0;
-  margin: 0;
+  padding: 0 0.2em 0 0;
+  margin: 1em 0;
 }
 
-.item button {
+.tab-list::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+.tab-list::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 16px;
+  box-shadow: inset 2px 2px 2px hsl(0deg 0% 100% / 25%), inset -2px -2px 2px rgb(0 0 0 / 25%);
+}
+
+.tab-list::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, rgba(var(--primary-rgb), 0.3) 0, rgba(var(--primary-rgb), 0.3));
+  border-radius: 16px;
+}
+
+.tab-list_item button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,18 +42,20 @@
   box-shadow: 0px 0px 10px 1px rgb(0, 0, 0, 0.1), 0 0 4px rgb(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.3));
+  transform: translateY(0);
+  transition: background-image 0.2s linear, transform 0.2s linear;
 }
 
-.item button:active {
+.tab-list_item button:active {
   transform: translateY(2px);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5));
 }
 
 /* TODO: dragmove style */
-.item.active button {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
+.tab-list_item.active button {
+  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.5), rgba(var(--secondary-rgb), 1));
 }
 
-.item img {
+.tab-list_item img {
   max-width: 100%;
 }
