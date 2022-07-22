@@ -7,7 +7,7 @@ export interface Recipe {
 export interface Item {
   id: number
   name: string
-  img?: string
+  img: string
   type: string
   initial: boolean
   href?: string

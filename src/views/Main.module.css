@@ -17,11 +17,10 @@
 .user_container {
   position: absolute;
   left: 0;
-  right: 0;
   top: 0;
-  bottom: 0;
+  width: fit-content;
+  height: 100vh;
   padding: 10vw;
-  z-index: 0;
 }
 .user {
   display: flex;
@@ -32,17 +31,24 @@
   transform: translateX(0);
   transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
 }
-.user._overview {
-  transform: translateX(33%);
+.user.overview {
+  transform: translateX(100%);
 }
 .user_info div,
 .user_outfit div {
-  width: 48px;
-  height: 48px;
+  width: var(--cell-width);
+  height: var(--cell-width);
   /* TODO: delete background & border & margin */
   background: violet;
   border: 1px solid black;
   margin-bottom: 0.2em;
+}
+.user_outfit div.active {
+  background: rebeccapurple;
+}
+.user_outfit div.disabled {
+  background: gray;
+  opacity: 0.3;
 }
 .user_display {
   /* TODO: reset width and height based on image tile */
@@ -52,6 +58,5 @@
 }
 .edit {
   position: relative;
-  z-index: 1;
   min-height: 100vh;
 }

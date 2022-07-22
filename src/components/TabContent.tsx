@@ -1,25 +1,32 @@
 import './TabContent.css'
 import { Item } from 'types'
 
-type Props = {
-  list: Item[]
+type Props<T = Item > = {
+  list: T[],
   title: string,
-  active: number
-  setActive: (id: number) => void
+  active: T | null,
+  setActive: (item: T | null) => void,
+  setDraggedItem: (item: T | null) => void,
 }
 
-function TabContent({ list, active, setActive }: Props): JSX.Element {
+const TabContent = <T extends Item,>({ list, active, setActive, setDraggedItem }: Props<T>): JSX.Element => {
+  const dragStartHandler = (item: T): void => {
+    setDraggedItem(item)
+  }
+  const dragEndHandler = (): void => {
+    setDraggedItem(null)
+  }
   return (
     <ul className="tab-list">
       {list.map(item => {
         let className = 'tab-list_item'
-        if (item.id === active) {
+        if (active && item.id === active.id) {
           className += ' active'
         }
       return (
         <li className={className} key={item.id}>
-          <button onClick={() => setActive(item.id)}>
-            <img src={item.img} alt={item.name}></img>
+          <button onClick={() => setActive(item)}>
+            <img src={item.img} alt={item.name} onDragStart={() => dragStartHandler(item)} onDragEnd={dragEndHandler}></img>
           </button>
         </li>
       )})}

@@ -1,6 +1,6 @@
 import { Footwear, Hat, Top, Bottom } from '../types'
 declare module 'footwear.json' {
-  const footwear: Footwear
+  const footwear: Footwear[]
   export default footwear
 }
 declare module 'hats.json' {
