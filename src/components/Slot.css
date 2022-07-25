@@ -1,0 +1,32 @@
+.slot {
+  padding: 0.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cell-width);
+  height: var(--cell-width);
+  /* TODO: delete background & border & margin */
+  background: violet;
+  border: 1px solid black;
+  margin-bottom: 0.2em;
+  position: relative;
+  transition: background 0.2s cubic-bezier(0.075, 0.82, 0.165, 1), opacity 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.slot-img {
+  cursor: pointer;
+}
+.slot-bg {
+  opacity: 0.3;
+  mix-blend-mode: color-dodge;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width:100%;
+  height: 100%;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+}
+.slot-bg.hide {
+  opacity: 0;
+}

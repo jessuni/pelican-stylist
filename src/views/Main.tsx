@@ -1,8 +1,9 @@
 import $style from './Main.module.css'
 
-import { useEffect, useRef,useState } from 'react'
+import React, { useEffect, useRef,useState } from 'react'
 import Tab from '@/components/Tab'
 import TabContent from '@/components/TabContent'
+import Slot from '@/components/Slot'
 import useIntersection from '@/composables/useIntersection'
 import { Item, Footwear, Hat, Top, Bottom } from 'types'
 
@@ -11,10 +12,29 @@ import _hats from '@data/hats.json'
 import _tops from '@data/tops.json'
 import _bottoms from '@data/bottoms.json'
 
+import hat_icon from '@/assets/hat.svg'
+import top_icon from '@/assets/top.svg'
+import bottom_icon from '@/assets/bottom.svg'
+import shoes_icon from '@/assets/footwear.svg'
+
 const footwear = _footwear as Footwear[]
 const hats = _hats as Hat[]
 const tops = _tops as Top[]
 const bottoms = _bottoms as Bottom[]
+
+type Icons = {
+  hats: string,
+  tops: string,
+  bottoms: string,
+  shoes: string
+}
+
+const ICONS: Icons = {
+  hats: hat_icon,
+  tops: top_icon,
+  bottoms: bottom_icon,
+  shoes: shoes_icon,
+}
 
 function Main(): JSX.Element {
   const exportElRef = useRef<HTMLElement>(null)
@@ -50,31 +70,54 @@ function Main(): JSX.Element {
     }
   }, [draggedItem])
 
-  const dragOverHandler = (e: React.DragEvent<HTMLDivElement>):void => {
-    e.preventDefault()
-    if (draggedItem && (e.target as HTMLDivElement).getAttribute('data-name') === draggedItem.type) {
-      // drop preview
-    }
-  }
-
   const dropHandler = (e: React.DragEvent<HTMLDivElement>):void => {
     e.preventDefault()
-    const el = e.target as HTMLDivElement
-    console.log('drop', draggedItem)
+    let el = e.target as HTMLElement
+    if (el.nodeName === 'IMG') {
+      el = el.parentElement as HTMLElement
+    }
     if (draggedItem && el.getAttribute('data-name') === draggedItem.type) {
-      if (draggedItem.type === 'hat') {
-        setHat(draggedItem as Hat)
+      switch (draggedItem.type) {
+        case 'hat':
+          console.log('set hat')
+          setHat(draggedItem as Hat)
+          break
+        case 'top':
+          setTop(draggedItem as Top)
+          break
+        case 'bottom':
+          setBottom(draggedItem as Bottom)
+          break
+        case 'footwear':
+          setShoes(draggedItem as Footwear)
+          break
       }
-      // const SlotItem = (item: Item): JSX.Element => (<img alt={item.name} src={item.img} />)
-      // el.props.children = <SlotItem item={draggedItem} />
     }
     setDraggedItem(null)
+  }
+
+  const delHandler = (e: React.DragEvent<HTMLImageElement> | React.MouseEvent<HTMLImageElement>): void => {
+    const el = (e.target as HTMLElement).parentElement as HTMLDivElement
+    switch (el.getAttribute('data-name')) {
+      case 'hat':
+        setHat(null)
+        break
+      case 'top':
+        setTop(null)
+        break
+      case 'bottom':
+        setBottom(null)
+        break
+      case 'footwear':
+        setShoes(null)
+        break
+    }
   }
 
   return (
     <main className={$style.main} id="main">
       <section className={$style.edit}>
-        <Tab data={{ footwear, hats, tops, bottoms }}>
+        <Tab data={{ footwear, hats, tops, bottoms }} icons={ICONS}>
           <TabContent title="hats" list={hats} setActive={setHat} active={hat} setDraggedItem={setDraggedItem} />
           <TabContent title="tops" list={tops} setActive={setTop} active={top} setDraggedItem={setDraggedItem} />
           <TabContent title="bottoms" list={bottoms} setActive={setBottom} active={bottom} setDraggedItem={setDraggedItem} />
@@ -91,10 +134,10 @@ function Main(): JSX.Element {
           </div>
           <div className={$style.user_display}></div>
           <div className={$style.user_outfit} ref={outfitRef}>
-            <div className={$style.user_hat} data-name="hat" onDragOver={dragOverHandler} onDrop={dropHandler}></div>
-            <div className={$style.user_top} data-name="top" onDragOver={dragOverHandler} onDrop={dropHandler}></div>
-            <div className={$style.user_bottom} data-name="bottom" onDragOver={dragOverHandler} onDrop={dropHandler}></div>
-            <div className={$style.user_shoes} data-name="footwear" onDragOver={dragOverHandler} onDrop={dropHandler}></div>
+            <Slot type="hat" active={hat} bgImg={ICONS['hats']} onDrop={dropHandler} onDel={delHandler} />
+            <Slot bgImg={ICONS['tops']} type="top" active={top} onDrop={dropHandler} onDel={delHandler} />
+            <Slot bgImg={ICONS['bottoms']} type="bottom" active={bottom} onDrop={dropHandler} onDel={delHandler} />
+            <Slot bgImg={ICONS['shoes']} type="footwear" active={shoes} onDrop={dropHandler} onDel={delHandler} />
           </div>
         </div>
       </section>

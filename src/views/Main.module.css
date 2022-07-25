@@ -34,17 +34,8 @@
 .user.overview {
   transform: translateX(100%);
 }
-.user_info div,
-.user_outfit div {
-  width: var(--cell-width);
-  height: var(--cell-width);
-  /* TODO: delete background & border & margin */
-  background: violet;
-  border: 1px solid black;
-  margin-bottom: 0.2em;
-}
-.user_outfit div.active {
-  background: rebeccapurple;
+.user_outfit div.active img {
+  opacity: 0.3;
 }
 .user_outfit div.disabled {
   background: gray;
