@@ -2,11 +2,11 @@ import './TabContent.css'
 import { Item } from 'types'
 
 type Props<T = Item > = {
-  list: T[],
-  title: string,
-  active: T | null,
-  setActive: (item: T | null) => void,
-  setDraggedItem: (item: T | null) => void,
+  list: T[]
+  title: string
+  active: T | null
+  setActive: (item: T | null) => void
+  setDraggedItem: (item: T | null) => void
 }
 
 const TabContent = <T extends Item,>({ list, active, setActive, setDraggedItem }: Props<T>): JSX.Element => {

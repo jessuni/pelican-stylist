@@ -2,12 +2,12 @@ import { useEffect, useRef } from 'react'
 import './ParallaxItem.css'
 
 type ParallaxProps = {
-  scale: number,
-  value: number,
-  left: string,
-  top: string,
-  src: string,
-  alt: string,
+  scale: number
+  value: number
+  left: string
+  top: string
+  src: string
+  alt: string
 }
 
 function ParallaxItem(props: ParallaxProps):JSX.Element {

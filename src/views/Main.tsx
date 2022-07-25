@@ -23,9 +23,9 @@ const tops = _tops as Top[]
 const bottoms = _bottoms as Bottom[]
 
 type Icons = {
-  hats: string,
-  tops: string,
-  bottoms: string,
+  hats: string
+  tops: string
+  bottoms: string
   shoes: string
 }
 
