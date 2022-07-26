@@ -26,10 +26,10 @@ function Tab({ icons, children }: Props): JSX.Element {
   return (
     <div className="tab">
       <nav>
-        <ul className="tab-items">
+        <div className="tab-items">
           {tabItems}
           <div className="tab-glider"></div>
-        </ul>
+        </div>
       </nav>
       {children.filter(item => item.props.title === activeTab)}
     </div>
