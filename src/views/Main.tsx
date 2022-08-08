@@ -7,7 +7,7 @@ import Slot from '@/components/Slot'
 import useIntersection from '@/composables/useIntersection'
 import { Item, Footwear, Hat, Top, Bottom } from 'types'
 
-import _footwear from '@data/footwear.json'
+import _shoes from '@data/footwear.json'
 import _hats from '@data/hats.json'
 import _tops from '@data/tops.json'
 import _bottoms from '@data/bottoms.json'
@@ -17,10 +17,14 @@ import top_icon from '@/assets/top.svg'
 import bottom_icon from '@/assets/bottom.svg'
 import shoes_icon from '@/assets/footwear.svg'
 
-const footwear = _footwear as Footwear[]
+const shoes = _shoes as Footwear[]
 const hats = _hats as Hat[]
 const tops = _tops as Top[]
 const bottoms = _bottoms as Bottom[]
+
+type SetStateActions = {
+  [key: string]: React.Dispatch<React.SetStateAction<any>>
+}
 
 type Icons = {
   hats: string
@@ -40,11 +44,18 @@ function Main(): JSX.Element {
   const exportElRef = useRef<HTMLElement>(null)
   const outfitRef = useRef<HTMLDivElement>(null)
   const inViewport = useIntersection(exportElRef)
-  const [shoes, setShoes] = useState<Footwear|null>(null)
+  const [shoe, setShoe] = useState<Footwear|null>(null)
   const [hat, setHat] = useState<Hat|null>(null)
   const [top, setTop] = useState<Top|null>(null)
   const [bottom, setBottom] = useState<Bottom|null>(null)
   const [draggedItem, setDraggedItem] = useState<Item|null>(null)
+
+  const setStates: SetStateActions = {
+    shoe: setShoe,
+    hat: setHat,
+    top: setTop,
+    bottom: setBottom,
+  }
 
   useEffect(() => {
     if (outfitRef && outfitRef.current) {
@@ -77,51 +88,24 @@ function Main(): JSX.Element {
       el = el.parentElement as HTMLElement
     }
     if (draggedItem && el.getAttribute('data-name') === draggedItem.type) {
-      switch (draggedItem.type) {
-        case 'hat':
-          console.log('set hat')
-          setHat(draggedItem as Hat)
-          break
-        case 'top':
-          setTop(draggedItem as Top)
-          break
-        case 'bottom':
-          setBottom(draggedItem as Bottom)
-          break
-        case 'footwear':
-          setShoes(draggedItem as Footwear)
-          break
-      }
+      setStates[draggedItem.type](draggedItem as Hat|Top|Bottom|Footwear)
     }
     setDraggedItem(null)
   }
 
   const delHandler = (e: React.DragEvent<HTMLImageElement> | React.MouseEvent<HTMLImageElement>): void => {
     const el = (e.target as HTMLElement).parentElement as HTMLDivElement
-    switch (el.getAttribute('data-name')) {
-      case 'hat':
-        setHat(null)
-        break
-      case 'top':
-        setTop(null)
-        break
-      case 'bottom':
-        setBottom(null)
-        break
-      case 'footwear':
-        setShoes(null)
-        break
-    }
+    setStates[el.getAttribute('data-name') as string](null)
   }
 
   return (
     <main className={$style.main} id="main">
       <section className={$style.edit}>
-        <Tab data={{ footwear, hats, tops, bottoms }} icons={ICONS}>
+        <Tab icons={ICONS}>
           <TabContent title="hats" list={hats} setActive={setHat} active={hat} setDraggedItem={setDraggedItem} />
           <TabContent title="tops" list={tops} setActive={setTop} active={top} setDraggedItem={setDraggedItem} />
           <TabContent title="bottoms" list={bottoms} setActive={setBottom} active={bottom} setDraggedItem={setDraggedItem} />
-          <TabContent title="shoes" list={footwear} setActive={setShoes} active={shoes} setDraggedItem={setDraggedItem} />
+          <TabContent title="shoes" list={shoes} setActive={setShoe} active={shoe} setDraggedItem={setDraggedItem} />
         </Tab>
       </section>
       <section className={$style.user_container}>
@@ -137,7 +121,7 @@ function Main(): JSX.Element {
             <Slot type="hat" active={hat} bgImg={ICONS['hats']} onDrop={dropHandler} onDel={delHandler} />
             <Slot bgImg={ICONS['tops']} type="top" active={top} onDrop={dropHandler} onDel={delHandler} />
             <Slot bgImg={ICONS['bottoms']} type="bottom" active={bottom} onDrop={dropHandler} onDel={delHandler} />
-            <Slot bgImg={ICONS['shoes']} type="footwear" active={shoes} onDrop={dropHandler} onDel={delHandler} />
+            <Slot bgImg={ICONS['shoes']} type="shoe" active={shoe} onDrop={dropHandler} onDel={delHandler} />
           </div>
         </div>
       </section>

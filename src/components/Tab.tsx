@@ -1,11 +1,10 @@
 import './Tab.css'
 
 import { ReactElement, useState } from 'react'
+import KeepAlive from 'react-activation'
 import TabItem from './TabItem'
-import { Item } from 'types'
 
 type Props = {
-  data: { [key: string]: Item[] }
   icons: object
   children: ReactElement[]
 }
@@ -23,6 +22,7 @@ function Tab({ icons, children }: Props): JSX.Element {
         setActiveTab={setActiveTab} />
     )
   })
+
   return (
     <div className="tab">
       <nav>
@@ -31,7 +31,10 @@ function Tab({ icons, children }: Props): JSX.Element {
           <div className="tab-glider"></div>
         </div>
       </nav>
-      {children.filter(item => item.props.title === activeTab)}
+      {children.map(item => {
+        return activeTab === item.props.title &&
+          <KeepAlive cacheKey={item.props.title} key={item.props.title}>{item}</KeepAlive>
+        })}
     </div>
   )
 }
