@@ -12,7 +12,7 @@ export interface Item {
   initial: boolean
   href?: string
   description?: string
-  obtain: string[]
+  obtain?: string[]
 }
 
 export interface Top extends Item {
@@ -35,7 +35,7 @@ export interface Hat extends Item {
 }
 
 export interface Footwear extends Item {
-  type: 'footwear'
+  type: 'shoe'
   initial: false
   buy_price: number | null
   sell_price: number | null
