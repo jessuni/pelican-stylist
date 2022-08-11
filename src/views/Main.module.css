@@ -9,12 +9,12 @@
   background-image: url('@/assets/galaxy_overlay.png'), linear-gradient(0deg, var(--bg-light-color) 0%, var(--bg-light-color) 100%);
   background-blend-mode: soft-light;
 }
-.user_container,
+.avatar_container,
 .edit,
 .export {
   padding: 5vh calc(10px + 4vmin);
 }
-.user_container {
+.avatar_container {
   position: absolute;
   left: 0;
   top: 0;
@@ -22,7 +22,7 @@
   height: 100vh;
   padding: 10vw;
 }
-.user {
+.avatar {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -31,17 +31,17 @@
   transform: translateX(0);
   transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
 }
-.user.overview {
+.avatar.overview {
   transform: translateX(100%);
 }
-.user_outfit div.active img {
+.avatar_outfit div.active img {
   opacity: 0.3;
 }
-.user_outfit div.disabled {
+.avatar_outfit div.disabled {
   background: gray;
   opacity: 0.3;
 }
-.user_display {
+.avatar_display {
   /* TODO: reset width and height based on image tile */
   min-height: 192px;
   width: 128px;

@@ -1,7 +1,7 @@
 import './TabContent.css'
 import { Item } from 'types'
 
-type Props<T = Item > = {
+type Props<T = Item> = {
   list: T[]
   title: string
   active: T | null

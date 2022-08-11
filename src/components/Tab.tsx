@@ -10,7 +10,7 @@ type Props = {
 }
 
 function Tab({ icons, children }: Props): JSX.Element {
-  const [activeTab, setActiveTab] = useState<string>('hats')
+  const [activeTab, setActiveTab] = useState<string>('hat')
   const tabItems = children.map(item => {
     const key = item.props.title
     return (

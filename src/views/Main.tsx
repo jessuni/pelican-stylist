@@ -17,27 +17,28 @@ import top_icon from '@/assets/top.svg'
 import bottom_icon from '@/assets/bottom.svg'
 import shoes_icon from '@/assets/footwear.svg'
 
-const shoes = _shoes as Footwear[]
-const hats = _hats as Hat[]
-const tops = _tops as Top[]
-const bottoms = _bottoms as Bottom[]
-
-type SetStateActions = {
-  [key: string]: React.Dispatch<React.SetStateAction<any>>
+type SetStateActions = { [key: string]: React.Dispatch<React.SetStateAction<any>> }
+type States = { [key: string]: Item | null }
+type Data = { [key:string]: Item[] }
+type Icons = {
+  hat: string
+  top: string
+  bottom: string
+  shoe: string
 }
 
-type Icons = {
-  hats: string
-  tops: string
-  bottoms: string
-  shoes: string
+const data: Data = {
+  shoe: _shoes as Footwear[],
+  hat: _hats as Hat[],
+  top: _tops as Top[],
+  bottom: _bottoms as Bottom[],
 }
 
 const ICONS: Icons = {
-  hats: hat_icon,
-  tops: top_icon,
-  bottoms: bottom_icon,
-  shoes: shoes_icon,
+  hat: hat_icon,
+  top: top_icon,
+  bottom: bottom_icon,
+  shoe: shoes_icon,
 }
 
 function Main(): JSX.Element {
@@ -50,11 +51,12 @@ function Main(): JSX.Element {
   const [bottom, setBottom] = useState<Bottom|null>(null)
   const [draggedItem, setDraggedItem] = useState<Item|null>(null)
 
+  const states: States = { hat, top, bottom, shoe }
   const setStates: SetStateActions = {
-    shoe: setShoe,
     hat: setHat,
     top: setTop,
     bottom: setBottom,
+    shoe: setShoe,
   }
 
   useEffect(() => {
@@ -62,7 +64,7 @@ function Main(): JSX.Element {
       if (draggedItem) {
         const type = draggedItem.type
         outfitRef.current.querySelectorAll('[data-name]').forEach(el => {
-          if (el.getAttribute('data-name')  === type) {
+          if (el.getAttribute('data-name') === type) {
             el.classList.add($style.active)
           } else {
             el.classList.add($style.disabled)
@@ -102,26 +104,24 @@ function Main(): JSX.Element {
     <main className={$style.main} id="main">
       <section className={$style.edit}>
         <Tab icons={ICONS}>
-          <TabContent title="hats" list={hats} setActive={setHat} active={hat} setDraggedItem={setDraggedItem} />
-          <TabContent title="tops" list={tops} setActive={setTop} active={top} setDraggedItem={setDraggedItem} />
-          <TabContent title="bottoms" list={bottoms} setActive={setBottom} active={bottom} setDraggedItem={setDraggedItem} />
-          <TabContent title="shoes" list={shoes} setActive={setShoe} active={shoe} setDraggedItem={setDraggedItem} />
+          {Object.keys(states).map(k => (
+            <TabContent key={k} title={k} list={data[k]} setActive={setStates[k]} active={states[k]} setDraggedItem={setDraggedItem} />
+          ))}
         </Tab>
       </section>
-      <section className={$style.user_container}>
-        <div className={`${$style.user}${inViewport ? ' ' + $style.overview : ''}`}>
-          <div className={$style.user_info}>
-            <div className={$style.user_hair}></div>
-            <div className={$style.user_skin}></div>
-            <div className={$style.user_eyes}></div>
-            <div className={$style.user_accessories}></div>
+      <section className={$style.avatar_container}>
+        <div className={`${$style.avatar}${inViewport ? ' ' + $style.overview : ''}`}>
+          <div className={$style.avatar_info}>
+            <div className={$style.avatar_hair}></div>
+            <div className={$style.avatar_skin}></div>
+            <div className={$style.avatar_eyes}></div>
+            <div className={$style.avatar_accessories}></div>
           </div>
-          <div className={$style.user_display}></div>
-          <div className={$style.user_outfit} ref={outfitRef}>
-            <Slot type="hat" active={hat} bgImg={ICONS['hats']} onDrop={dropHandler} onDel={delHandler} />
-            <Slot bgImg={ICONS['tops']} type="top" active={top} onDrop={dropHandler} onDel={delHandler} />
-            <Slot bgImg={ICONS['bottoms']} type="bottom" active={bottom} onDrop={dropHandler} onDel={delHandler} />
-            <Slot bgImg={ICONS['shoes']} type="shoe" active={shoe} onDrop={dropHandler} onDel={delHandler} />
+          <div className={$style.avatar_display}></div>
+          <div className={$style.avatar_outfit} ref={outfitRef}>
+            {Object.keys(states).map(k => {
+              return <Slot key={k} bgImg={ICONS[k as keyof typeof ICONS]} type={k} active={states[k]} onDrop={dropHandler} onDel={delHandler} />
+            })}
           </div>
         </div>
       </section>
