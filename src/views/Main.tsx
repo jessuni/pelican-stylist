@@ -12,33 +12,15 @@ import _hats from '@data/hats.json'
 import _tops from '@data/tops.json'
 import _bottoms from '@data/bottoms.json'
 
-import hat_icon from '@/assets/hat.svg'
-import top_icon from '@/assets/top.svg'
-import bottom_icon from '@/assets/bottom.svg'
-import shoes_icon from '@/assets/footwear.svg'
-
 type SetStateActions = { [key: string]: React.Dispatch<React.SetStateAction<any>> }
 type States = { [key: string]: Item | null }
 type Data = { [key:string]: Item[] }
-type Icons = {
-  hat: string
-  top: string
-  bottom: string
-  shoe: string
-}
 
 const data: Data = {
   shoe: _shoes as Footwear[],
   hat: _hats as Hat[],
   top: _tops as Top[],
   bottom: _bottoms as Bottom[],
-}
-
-const ICONS: Icons = {
-  hat: hat_icon,
-  top: top_icon,
-  bottom: bottom_icon,
-  shoe: shoes_icon,
 }
 
 function Main(): JSX.Element {
@@ -103,7 +85,7 @@ function Main(): JSX.Element {
   return (
     <main className={$style.main} id="main">
       <section className={$style.edit}>
-        <Tab icons={ICONS}>
+        <Tab>
           {Object.keys(states).map(k => (
             <TabContent key={k} title={k} list={data[k]} setActive={setStates[k]} active={states[k]} setDraggedItem={setDraggedItem} />
           ))}
@@ -120,7 +102,7 @@ function Main(): JSX.Element {
           <div className={$style.avatar_display}></div>
           <div className={$style.avatar_outfit} ref={outfitRef}>
             {Object.keys(states).map(k => {
-              return <Slot key={k} bgImg={ICONS[k as keyof typeof ICONS]} type={k} active={states[k]} onDrop={dropHandler} onDel={delHandler} />
+              return <Slot key={k} type={k} active={states[k]} onDrop={dropHandler} onDel={delHandler} />
             })}
           </div>
         </div>
