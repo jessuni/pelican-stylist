@@ -1,8 +1,12 @@
 import './Tab.css'
 
 import { ReactElement, useState } from 'react'
-import KeepAlive from 'react-activation'
+import K from 'react-activation'
 import TabItem from './TabItem'
+
+// @ts-ignore
+// workaround for vite issue #2139
+const KeepAlive = K.default ? K.default: K
 
 type Props = {
   children: ReactElement[]
