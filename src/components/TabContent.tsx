@@ -26,7 +26,14 @@ const TabContent = <T extends Item,>({ list, active, setActive, setDraggedItem }
       return (
         <li className={className} key={item.id}>
           <button onClick={() => setActive(item)}>
-            <img src={item.img} alt={item.name} onDragStart={() => dragStartHandler(item)} onDragEnd={dragEndHandler}></img>
+            <div
+              className={item.type + ' ' + item.type + '_' + item.id}
+              role="img"
+              aria-label={item.name}
+              draggable={true}
+              onDragStart={() => dragStartHandler(item)}
+              onDragEnd={dragEndHandler}
+            ></div>
           </button>
         </li>
       )})}

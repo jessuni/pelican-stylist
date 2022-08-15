@@ -44,3 +44,8 @@ export interface Footwear extends Item {
     degree: number
   }
 }
+
+export interface Hair extends Item {
+  type: 'hair'
+  initial: true
+}

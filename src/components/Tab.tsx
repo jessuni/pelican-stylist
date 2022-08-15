@@ -13,7 +13,7 @@ type Props = {
 }
 
 function Tab({ children }: Props): JSX.Element {
-  const [activeTab, setActiveTab] = useState<string>('hat')
+  const [activeTab, setActiveTab] = useState<string>('hair')
   const tabItems = children.map(item => {
     const key = item.props.title
     const url = new URL(`../assets/${key}.svg`, import.meta.url).href

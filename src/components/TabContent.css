@@ -9,6 +9,7 @@
   list-style: none;
   padding: 0 0.2em 0 0;
   margin: 1em 0;
+  --scale: 1;
 }
 
 .tab-list::-webkit-scrollbar {
@@ -51,11 +52,15 @@
   background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5));
 }
 
+.tab-list_item {
+  image-rendering: pixelated;
+}
+.tab-list_item div[draggable="true"] {
+  transform: translate(0, 0);
+
+}
+
 /* TODO: dragmove style */
 .tab-list_item.active button {
   background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.5), rgba(var(--secondary-rgb), 1));
-}
-
-.tab-list_item img {
-  max-width: 100%;
 }

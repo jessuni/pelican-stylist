@@ -1,16 +1,24 @@
 import $style from './Main.module.css'
+import '@/assets/avatar/body.css'
+import '@/assets/avatar/hat.css'
+import '@/assets/avatar/hair.css'
+import '@/assets/avatar/top.css'
+import '@/assets/avatar/bottom.css'
+import '@/assets/avatar/shoe.css'
 
 import React, { useEffect, useRef,useState } from 'react'
 import Tab from '@/components/Tab'
 import TabContent from '@/components/TabContent'
 import Slot from '@/components/Slot'
 import useIntersection from '@/composables/useIntersection'
-import { Item, Footwear, Hat, Top, Bottom } from 'types'
+import { Item, Footwear, Hat, Top, Bottom, Hair } from 'types'
 
-import _shoes from '@data/footwear.json'
+import _shoes from '@data/shoes.json'
 import _hats from '@data/hats.json'
 import _tops from '@data/tops.json'
 import _bottoms from '@data/bottoms.json'
+
+import avatar_bg_light from '@/assets/avatar/light.png'
 
 type SetStateActions = { [key: string]: React.Dispatch<React.SetStateAction<any>> }
 type States = { [key: string]: Item | null }
@@ -21,6 +29,16 @@ const data: Data = {
   hat: _hats as Hat[],
   top: _tops as Top[],
   bottom: _bottoms as Bottom[],
+  hair: [...new Array(74)].map((_, i) => {
+    const id = 5000 + i
+    return {
+      id,
+      name: `Hair ${id}`,
+      type: 'hair',
+      img: new URL(`../assets/avatar/hair.png`, import.meta.url).href,
+      initial: true,
+    }
+  }) as Hair[],
 }
 
 function Main(): JSX.Element {
@@ -31,10 +49,12 @@ function Main(): JSX.Element {
   const [hat, setHat] = useState<Hat|null>(null)
   const [top, setTop] = useState<Top|null>(null)
   const [bottom, setBottom] = useState<Bottom|null>(null)
+  const [hair, setHair] = useState<Hair|null>(null)
   const [draggedItem, setDraggedItem] = useState<Item|null>(null)
 
-  const states: States = { hat, top, bottom, shoe }
+  const states: States = { hair, hat, top, bottom, shoe }
   const setStates: SetStateActions = {
+    hair: setHair,
     hat: setHat,
     top: setTop,
     bottom: setBottom,
@@ -68,7 +88,8 @@ function Main(): JSX.Element {
   const dropHandler = (e: React.DragEvent<HTMLDivElement>):void => {
     e.preventDefault()
     let el = e.target as HTMLElement
-    if (el.nodeName === 'IMG') {
+    console.log(el.nodeName, el)
+    if (el.classList.contains('slot-img')) {
       el = el.parentElement as HTMLElement
     }
     if (draggedItem && el.getAttribute('data-name') === draggedItem.type) {
@@ -77,7 +98,7 @@ function Main(): JSX.Element {
     setDraggedItem(null)
   }
 
-  const delHandler = (e: React.DragEvent<HTMLImageElement> | React.MouseEvent<HTMLImageElement>): void => {
+  const delHandler = (e: React.DragEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>): void => {
     const el = (e.target as HTMLElement).parentElement as HTMLDivElement
     setStates[el.getAttribute('data-name') as string](null)
   }
@@ -99,7 +120,15 @@ function Main(): JSX.Element {
             <div className={$style.avatar_eyes}></div>
             <div className={$style.avatar_accessories}></div>
           </div>
-          <div className={$style.avatar_display}></div>
+          <div className={$style.avatar_display}>
+            <img src={avatar_bg_light} alt="avatar in light background" />
+            <div className={$style.avatar_body}>
+              <div className="body_female" role="img" aria-label="avatar body"></div>
+            </div>
+            <div className={$style.avatar_arm}>
+              <div className="arm_female" role="img" aria-label="avatar arm"></div>
+            </div>
+          </div>
           <div className={$style.avatar_outfit} ref={outfitRef}>
             {Object.keys(states).map(k => {
               return <Slot key={k} type={k} active={states[k]} onDrop={dropHandler} onDel={delHandler} />

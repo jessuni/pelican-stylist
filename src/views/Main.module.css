@@ -30,11 +30,15 @@
   top: 30vh;
   transform: translateX(0);
   transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+  image-rendering: pixelated;
 }
 .avatar.overview {
   transform: translateX(100%);
 }
-.avatar_outfit div.active img {
+.avatar_outfit {
+  --scale: 1;
+}
+.avatar_outfit div.active .slot-img {
   opacity: 0.3;
 }
 .avatar_outfit div.disabled {
@@ -46,7 +50,21 @@
   min-height: 192px;
   width: 128px;
   margin: 0 0.5em;
+  image-rendering: pixelated;
+  position: relative;
 }
+.avatar_body,
+.avatar_arm {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.avatar_body img,
+.avatar_arm img {
+  width: 64px;
+}
+
 .edit {
   position: relative;
   min-height: 100vh;
