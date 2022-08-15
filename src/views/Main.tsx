@@ -5,13 +5,14 @@ import '@/assets/avatar/hair.css'
 import '@/assets/avatar/top.css'
 import '@/assets/avatar/bottom.css'
 import '@/assets/avatar/shoe.css'
+import '@/assets/avatar/accs.css'
 
 import React, { useEffect, useRef,useState } from 'react'
 import Tab from '@/components/Tab'
 import TabContent from '@/components/TabContent'
 import Slot from '@/components/Slot'
 import useIntersection from '@/composables/useIntersection'
-import { Item, Footwear, Hat, Top, Bottom, Hair } from 'types'
+import { Item, Footwear, Hat, Top, Bottom, Hair, Accessory } from 'types'
 
 import _shoes from '@data/shoes.json'
 import _hats from '@data/hats.json'
@@ -30,15 +31,25 @@ const data: Data = {
   top: _tops as Top[],
   bottom: _bottoms as Bottom[],
   hair: [...new Array(74)].map((_, i) => {
-    const id = 5000 + i
+    const id = 5000 + i + 1
     return {
       id,
-      name: `Hair ${id}`,
+      name: `Hair ${i + 1}`,
       type: 'hair',
       img: new URL(`../assets/avatar/hair.png`, import.meta.url).href,
       initial: true,
     }
   }) as Hair[],
+  accs: [...new Array(19)].map((_, i) => {
+    const id = 6000 + i + 1
+    return {
+      id,
+      name: `Accessory ${i + 2}`,
+      type: 'accs',
+      img: new URL(`../assets/avatar/accs.png`, import.meta.url).href,
+      initial: true,
+    }
+  }) as Accessory[],
 }
 
 function Main(): JSX.Element {
@@ -50,15 +61,17 @@ function Main(): JSX.Element {
   const [top, setTop] = useState<Top|null>(null)
   const [bottom, setBottom] = useState<Bottom|null>(null)
   const [hair, setHair] = useState<Hair|null>(null)
+  const [accs, setAccs] = useState<Accessory|null>(null)
   const [draggedItem, setDraggedItem] = useState<Item|null>(null)
 
-  const states: States = { hair, hat, top, bottom, shoe }
+  const states: States = { hair, hat, top, bottom, shoe, accs }
   const setStates: SetStateActions = {
     hair: setHair,
     hat: setHat,
     top: setTop,
     bottom: setBottom,
     shoe: setShoe,
+    accs: setAccs,
   }
 
   useEffect(() => {
@@ -128,6 +141,13 @@ function Main(): JSX.Element {
             <div className={$style.avatar_arm}>
               <div className="arm_female" role="img" aria-label="avatar arm"></div>
             </div>
+            {Object.keys(states).map(k => {
+              return states[k]
+                ? <div className={$style['avatar_' + k]} key={k}>
+                    <div className={`${k} ${states[k]?.type}_${states[k]?.id}`}></div>
+                  </div>
+                : null
+            })}
           </div>
           <div className={$style.avatar_outfit} ref={outfitRef}>
             {Object.keys(states).map(k => {

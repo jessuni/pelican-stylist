@@ -49,3 +49,8 @@ export interface Hair extends Item {
   type: 'hair'
   initial: true
 }
+
+export interface Accessory extends Item {
+  type: 'accs'
+  initial: true
+}
