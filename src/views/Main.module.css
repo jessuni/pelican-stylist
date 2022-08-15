@@ -64,6 +64,37 @@
 .avatar_arm img {
   width: 64px;
 }
+.avatar_hair,
+.avatar_hat,
+.avatar_top,
+.avatar_bottom,
+.avatar_shoe,
+.avatar_accs {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.avatar_hair {
+  --scale: 64 / 48;
+  top: 38.5px;
+}
+.avatar_hat {
+  --scale: 80 / 48;
+  top: 30.5px;
+}
+.avatar_top {
+  --scale: 1;
+  top: 98.5px;
+  z-index: 3;
+}
+.avatar_bottom {
+  --scale: 1;
+  top: 114.5px;
+}
+.avatar_accs {
+  --scale: 64 / 48;
+  top: 46.5px;
+}
 
 .edit {
   position: relative;
