@@ -21,6 +21,11 @@
   width: fit-content;
   height: 100vh;
   padding: 10vw;
+  transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s, left cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+}
+.avatar_container.overview {
+  left: 50%;
+  transform: translateX(-50%);
 }
 .avatar {
   display: flex;
@@ -29,13 +34,14 @@
   position: sticky;
   top: 30vh;
   transform: translateX(0);
-  transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
   image-rendering: pixelated;
 }
-.avatar.overview {
-  transform: translateX(100%);
-}
 .avatar_outfit {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(4 auto);
+  column-gap: calc(128px + 1em);
+  row-gap: 0.2em;
   --scale: 1;
 }
 .avatar_outfit div.active .slot-img {
@@ -47,18 +53,18 @@
 }
 .avatar_display {
   /* TODO: reset width and height based on image tile */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   min-height: 192px;
   width: 128px;
-  margin: 0 0.5em;
   image-rendering: pixelated;
-  position: relative;
 }
 .avatar_body,
 .avatar_arm {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  left: 32px;
+  top: 32px;
 }
 .avatar_body img,
 .avatar_arm img {
@@ -76,27 +82,29 @@
 }
 .avatar_hair {
   --scale: 64 / 48;
-  top: 38.5px;
+  top: 36px;
 }
 .avatar_hat {
   --scale: 80 / 48;
-  top: 30.5px;
+  top: 28px;
 }
 .avatar_top {
   --scale: 1;
-  top: 98.5px;
+  top: 96px;
   z-index: 3;
 }
 .avatar_bottom {
   --scale: 1;
-  top: 114.5px;
+  top: 112px;
 }
 .avatar_accs {
   --scale: 64 / 48;
-  top: 46.5px;
+  top: 48px;
+  z-index: 4;
 }
 
-.edit {
+.edit,
+.export {
   position: relative;
   min-height: 100vh;
 }

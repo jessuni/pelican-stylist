@@ -8,7 +8,6 @@
   /* TODO: delete background & border & margin */
   background: violet;
   border: 1px solid black;
-  margin-bottom: 0.2em;
   position: relative;
   transition: background 0.2s cubic-bezier(0.075, 0.82, 0.165, 1), opacity 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }

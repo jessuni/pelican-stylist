@@ -125,14 +125,8 @@ function Main(): JSX.Element {
           ))}
         </Tab>
       </section>
-      <section className={$style.avatar_container}>
-        <div className={`${$style.avatar}${inViewport ? ' ' + $style.overview : ''}`}>
-          <div className={$style.avatar_info}>
-            <div className={$style.avatar_hair}></div>
-            <div className={$style.avatar_skin}></div>
-            <div className={$style.avatar_eyes}></div>
-            <div className={$style.avatar_accessories}></div>
-          </div>
+      <section className={`${$style.avatar_container}${inViewport ? ' ' + $style.overview : ''}`}>
+        <div className={$style.avatar}>
           <div className={$style.avatar_display}>
             <img src={avatar_bg_light} alt="avatar in light background" />
             <div className={$style.avatar_body}>
@@ -148,6 +142,8 @@ function Main(): JSX.Element {
                   </div>
                 : null
             })}
+            <div className={$style.avatar_skin}></div>
+            <div className={$style.avatar_eyes}></div>
           </div>
           <div className={$style.avatar_outfit} ref={outfitRef}>
             {Object.keys(states).map(k => {
@@ -156,7 +152,7 @@ function Main(): JSX.Element {
           </div>
         </div>
       </section>
-      <section className="export" ref={exportElRef}></section>
+      <section className={$style.export} ref={exportElRef}></section>
     </main>
   )
 }
