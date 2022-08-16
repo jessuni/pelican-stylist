@@ -1,58 +1,57 @@
-
 .shoe_1001 {
   background-position: calc(var(--scale) * 0);
-  }
+}
 .shoe_1002 {
   background-position: calc(var(--scale) * -48px);
-  }
+}
 .shoe_1003 {
   background-position: calc(var(--scale) * -96px);
-  }
+}
 .shoe_1004 {
   background-position: calc(var(--scale) * -144px);
-  }
+}
 .shoe_1005 {
   background-position: calc(var(--scale) * -192px);
-  }
+}
 .shoe_1006 {
   background-position: calc(var(--scale) * -240px);
-  }
+}
 .shoe_1007 {
   background-position: calc(var(--scale) * -288px);
-  }
+}
 .shoe_1008 {
   background-position: calc(var(--scale) * -336px);
-  }
+}
 .shoe_1009 {
   background-position: calc(var(--scale) * -384px);
-  }
+}
 .shoe_1010 {
   background-position: calc(var(--scale) * -432px);
-  }
+}
 .shoe_1011 {
   background-position: calc(var(--scale) * -480px);
-  }
+}
 .shoe_1012 {
   background-position: calc(var(--scale) * -528px);
-  }
+}
 .shoe_1013 {
   background-position: calc(var(--scale) * -576px);
-  }
+}
 .shoe_1014 {
   background-position: calc(var(--scale) * -624px);
-  }
+}
 .shoe_1015 {
   background-position: calc(var(--scale) * -672px);
-  }
+}
 .shoe_1016 {
   background-position: calc(var(--scale) * -720px);
-  }
+}
 .shoe_1017 {
   background-position: calc(var(--scale) * -768px);
-  }
+}
 .shoe_1018 {
   background-position: calc(var(--scale) * -816px);
-  }
+}
 .shoe {
   width: calc(var(--scale) * 48px);
   height: calc(var(--scale) * 48px);
