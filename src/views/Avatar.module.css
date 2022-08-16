@@ -1,0 +1,87 @@
+.container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: fit-content;
+  height: 100vh;
+  transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s, left cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+}
+.container.overview {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.avatar {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  position: sticky;
+  top: 30vh;
+  transform: translateX(0);
+  image-rendering: pixelated;
+}
+.outfit {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(4 auto);
+  column-gap: calc(128px + 1em);
+  row-gap: 0.2em;
+  --scale: 1;
+}
+.outfit div.active .slot-img {
+  opacity: 0.3;
+}
+.outfit div.disabled {
+  background: gray;
+  opacity: 0.3;
+}
+.display {
+  /* TODO: reset width and height based on image tile */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  min-height: 192px;
+  width: 128px;
+  image-rendering: pixelated;
+}
+.body,
+.arm {
+  position: absolute;
+  left: 32px;
+  top: 32px;
+}
+.body img,
+.arm img {
+  width: 64px;
+}
+.hair,
+.hat,
+.top,
+.bottom,
+.shoe,
+.accs {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.hair {
+  --scale: 64 / 48;
+  top: 36px;
+}
+.hat {
+  --scale: 80 / 48;
+  top: 28px;
+}
+.top {
+  --scale: 1;
+  top: 96px;
+  z-index: 3;
+}
+.bottom {
+  --scale: 1;
+  top: 112px;
+}
+.accs {
+  --scale: 64 / 48;
+  top: 48px;
+  z-index: 4;
+}

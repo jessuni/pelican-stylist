@@ -7,10 +7,10 @@ import '@/assets/avatar/bottom.css'
 import '@/assets/avatar/shoe.css'
 import '@/assets/avatar/accs.css'
 
-import React, { useEffect, useRef,useState } from 'react'
+import { useRef,useState } from 'react'
 import Tab from '@/components/Tab'
 import TabContent from '@/components/TabContent'
-import Slot from '@/components/Slot'
+import Avatar from '@/views/Avatar'
 import useIntersection from '@/composables/useIntersection'
 import { Item, Footwear, Hat, Top, Bottom, Hair, Accessory } from 'types'
 
@@ -19,10 +19,8 @@ import _hats from '@data/hats.json'
 import _tops from '@data/tops.json'
 import _bottoms from '@data/bottoms.json'
 
-import avatar_bg_light from '@/assets/avatar/light.png'
-
-type SetStateActions = { [key: string]: React.Dispatch<React.SetStateAction<any>> }
-type States = { [key: string]: Item | null }
+export type States = { [key: string]: Item | null }
+export type SetStateActions = { [key: string]: React.Dispatch<React.SetStateAction<any>> }
 type Data = { [key:string]: Item[] }
 
 const data: Data = {
@@ -54,7 +52,6 @@ const data: Data = {
 
 function Main(): JSX.Element {
   const exportElRef = useRef<HTMLElement>(null)
-  const outfitRef = useRef<HTMLDivElement>(null)
   const inViewport = useIntersection(exportElRef)
   const [shoe, setShoe] = useState<Footwear|null>(null)
   const [hat, setHat] = useState<Hat|null>(null)
@@ -74,48 +71,6 @@ function Main(): JSX.Element {
     accs: setAccs,
   }
 
-  useEffect(() => {
-    if (outfitRef && outfitRef.current) {
-      if (draggedItem) {
-        const type = draggedItem.type
-        outfitRef.current.querySelectorAll('[data-name]').forEach(el => {
-          if (el.getAttribute('data-name') === type) {
-            el.classList.add($style.active)
-          } else {
-            el.classList.add($style.disabled)
-          }
-        })
-      } else {
-        Array.from(outfitRef.current.children).forEach(el => {
-          if (el.classList.contains($style.active)) {
-            el.classList.remove($style.active)
-          } else {
-            el.classList.remove($style.disabled)
-          }
-        })
-      }
-
-    }
-  }, [draggedItem])
-
-  const dropHandler = (e: React.DragEvent<HTMLDivElement>):void => {
-    e.preventDefault()
-    let el = e.target as HTMLElement
-    console.log(el.nodeName, el)
-    if (el.classList.contains('slot-img')) {
-      el = el.parentElement as HTMLElement
-    }
-    if (draggedItem && el.getAttribute('data-name') === draggedItem.type) {
-      setStates[draggedItem.type](draggedItem as Hat|Top|Bottom|Footwear)
-    }
-    setDraggedItem(null)
-  }
-
-  const delHandler = (e: React.DragEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>): void => {
-    const el = (e.target as HTMLElement).parentElement as HTMLDivElement
-    setStates[el.getAttribute('data-name') as string](null)
-  }
-
   return (
     <main className={$style.main} id="main">
       <section className={$style.edit}>
@@ -125,33 +80,7 @@ function Main(): JSX.Element {
           ))}
         </Tab>
       </section>
-      <section className={`${$style.avatar_container}${inViewport ? ' ' + $style.overview : ''}`}>
-        <div className={$style.avatar}>
-          <div className={$style.avatar_display}>
-            <img src={avatar_bg_light} alt="avatar in light background" />
-            <div className={$style.avatar_body}>
-              <div className="body_female" role="img" aria-label="avatar body"></div>
-            </div>
-            <div className={$style.avatar_arm}>
-              <div className="arm_female" role="img" aria-label="avatar arm"></div>
-            </div>
-            {Object.keys(states).map(k => {
-              return states[k]
-                ? <div className={$style['avatar_' + k]} key={k}>
-                    <div className={`${k} ${states[k]?.type}_${states[k]?.id}`}></div>
-                  </div>
-                : null
-            })}
-            <div className={$style.avatar_skin}></div>
-            <div className={$style.avatar_eyes}></div>
-          </div>
-          <div className={$style.avatar_outfit} ref={outfitRef}>
-            {Object.keys(states).map(k => {
-              return <Slot key={k} type={k} active={states[k]} onDrop={dropHandler} onDel={delHandler} />
-            })}
-          </div>
-        </div>
-      </section>
+      <Avatar className={$style.avatar} inViewport={inViewport} draggedItem={draggedItem} setDraggedItem={setDraggedItem} states={states} setStates={setStates} />
       <section className={$style.export} ref={exportElRef}></section>
     </main>
   )

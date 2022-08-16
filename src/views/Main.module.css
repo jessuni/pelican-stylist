@@ -9,100 +9,11 @@
   background-image: url('@/assets/galaxy_overlay.png'), linear-gradient(0deg, var(--bg-light-color) 0%, var(--bg-light-color) 100%);
   background-blend-mode: soft-light;
 }
-.avatar_container,
+.avatar,
 .edit,
 .export {
   padding: 5vh calc(10px + 4vmin);
 }
-.avatar_container {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: fit-content;
-  height: 100vh;
-  padding: 10vw;
-  transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s, left cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
-}
-.avatar_container.overview {
-  left: 50%;
-  transform: translateX(-50%);
-}
-.avatar {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  position: sticky;
-  top: 30vh;
-  transform: translateX(0);
-  image-rendering: pixelated;
-}
-.avatar_outfit {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-template-rows: repeat(4 auto);
-  column-gap: calc(128px + 1em);
-  row-gap: 0.2em;
-  --scale: 1;
-}
-.avatar_outfit div.active .slot-img {
-  opacity: 0.3;
-}
-.avatar_outfit div.disabled {
-  background: gray;
-  opacity: 0.3;
-}
-.avatar_display {
-  /* TODO: reset width and height based on image tile */
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  min-height: 192px;
-  width: 128px;
-  image-rendering: pixelated;
-}
-.avatar_body,
-.avatar_arm {
-  position: absolute;
-  left: 32px;
-  top: 32px;
-}
-.avatar_body img,
-.avatar_arm img {
-  width: 64px;
-}
-.avatar_hair,
-.avatar_hat,
-.avatar_top,
-.avatar_bottom,
-.avatar_shoe,
-.avatar_accs {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.avatar_hair {
-  --scale: 64 / 48;
-  top: 36px;
-}
-.avatar_hat {
-  --scale: 80 / 48;
-  top: 28px;
-}
-.avatar_top {
-  --scale: 1;
-  top: 96px;
-  z-index: 3;
-}
-.avatar_bottom {
-  --scale: 1;
-  top: 112px;
-}
-.avatar_accs {
-  --scale: 64 / 48;
-  top: 48px;
-  z-index: 4;
-}
-
 .edit,
 .export {
   position: relative;
