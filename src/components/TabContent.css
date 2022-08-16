@@ -11,23 +11,19 @@
   margin: 1em 0;
   --scale: 1;
 }
-
 .tab-list::-webkit-scrollbar {
   width: 16px;
   height: 16px;
 }
-
 .tab-list::-webkit-scrollbar-thumb {
   background: var(--primary-color);
   border-radius: 16px;
   box-shadow: inset 2px 2px 2px hsl(0deg 0% 100% / 25%), inset -2px -2px 2px rgb(0 0 0 / 25%);
 }
-
 .tab-list::-webkit-scrollbar-track {
   background: linear-gradient(90deg, rgba(var(--primary-rgb), 0.3) 0, rgba(var(--primary-rgb), 0.3));
   border-radius: 16px;
 }
-
 .tab-list_item button {
   display: flex;
   align-items: center;
@@ -46,21 +42,16 @@
   transform: translateY(0);
   transition: background-image 0.2s linear, transform 0.2s linear;
 }
-
 .tab-list_item button:active {
   transform: translateY(2px);
   background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5));
 }
-
 .tab-list_item {
   image-rendering: pixelated;
 }
-.tab-list_item div[draggable="true"] {
+.tab-list_item span[draggable="true"] {
   transform: translate(0, 0);
-
 }
-
-/* TODO: dragmove style */
 .tab-list_item.active button {
   background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.5), rgba(var(--secondary-rgb), 1));
 }
