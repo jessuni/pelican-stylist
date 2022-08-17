@@ -57,7 +57,7 @@
 }
 .accs {
   width: calc(var(--scale) * 48px);
-  height: calc(var(--scale) * 51px);
+  height: calc(var(--scale) * 48px);
   background-image: url('./accs.png');
-  background-size: calc(var(--scale) * 912px) calc(var(--scale) * 51px); background-repeat: repeat-x;
+  background-size: calc(var(--scale) * 912px) calc(var(--scale) * 48px); background-repeat: repeat-x;
 }

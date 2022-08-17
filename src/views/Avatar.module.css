@@ -65,7 +65,7 @@
 }
 .hair {
   --scale: 64 / 48;
-  top: 36px;
+  top: 40px;
 }
 .hat {
   --scale: 80 / 48;
@@ -82,6 +82,6 @@
 }
 .accs {
   --scale: 64 / 48;
-  top: 48px;
+  top: 44px;
   z-index: 4;
 }
