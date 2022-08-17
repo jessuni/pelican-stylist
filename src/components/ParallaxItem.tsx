@@ -24,7 +24,7 @@ function ParallaxItem(props: ParallaxProps):JSX.Element {
   useEffect(() => {
     window.addEventListener('mousemove', mouseMoveHandler)
     return (() => { window.removeEventListener('mousemove', mouseMoveHandler )})
-  })
+  }, [])
 
   const rotate = Math.round(Math.random() * 360) + 'deg'
   return (
