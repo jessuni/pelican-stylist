@@ -1,0 +1,83 @@
+.cp {
+  display: flex;
+  flex-flow: row nowrap;
+  --cp-hue: 0;
+  --cp-sat: 0%;
+  --cp-light: 50%;
+}
+.cp-field {
+  text-align: center;
+  padding: 1em;
+  background: var(--tab-bg-color);
+  color: #fff;
+  border-radius: 4px;
+}
+.cp-field + .cp-field {
+  margin-left: 0.4em;
+}
+.cp-field,
+.cp-field span {
+  display: block;
+}
+.cp-field_name {
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+.cp-field_value {
+  font-weight: 900;
+  font-size: 2em;
+}
+.cp-field_input {
+  appearance: none;
+  background: transparent;
+}
+.cp-field_input::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  border-radius: 20px;
+  border: 1px solid #fff;
+}
+.cp-field_input::-moz-range-track {
+  width: 100%;
+  height: 10px;
+  cursor: pointer;
+  border-radius: 20px;
+  border: 1px solid #fff;
+}
+.cp-field_input.Hue::-webkit-slider-runnable-track {
+  background: linear-gradient(90deg, hsl(0deg 100% 50%), hsl(30deg 100% 50%), hsl(60deg 100% 50%), hsl(90deg 100% 50%), hsl(120deg 100% 50%), hsl(150deg 100% 50%), hsl(180deg 100% 50%), hsl(210deg 100% 50%), hsl(240deg 100% 50%), hsl(270deg 100% 50%), hsl(300deg 100% 50%), hsl(320deg 100% 50%), hsl(340deg 100% 50%), hsl(360deg 100% 50%)), linear-gradient(#efefef, #c9c9c9);
+}
+.cp-field_input.Sat::-webkit-slider-runnable-track {
+  background: linear-gradient(90deg, hsl(var(--cp-hue), 0%, calc(var(--cp-light) * 2)), hsl(var(--cp-hue), 100%, var(--cp-light))), linear-gradient(#efefef, #c9c9c9);
+}
+.cp-field_input.Light::-webkit-slider-runnable-track {
+  background: linear-gradient(90deg, hsl(var(--cp-hue), var(--cp-sat), 0%), hsl(var(--cp-hue), var(--cp-sat), 50%)), linear-gradient(#efefef, #c9c9c9);
+}
+.cp-field_input::-webkit-slider-thumb {
+  border: 4px solid #fff;
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5px;
+  box-shadow: 1px 0px 5px 1px rgb(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(hsl(var(--cp-hue), var(--cp-sat), var(--cp-light)), hsla(var(--cp-hue), var(--cp-sat), var(--cp-light), 0.8)) padding-box, linear-gradient(#fbfbfb, #c2c2c2);
+}
+.cp-field_input::-moz-range-thumb {
+  border: 4px solid #fff;
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5px;
+  box-shadow: 1px 0px 5px 1px rgb(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(hsl(var(--cp-hue), var(--cp-sat), var(--cp-light)), hsla(var(--cp-hue), var(--cp-sat), var(--cp-light), 0.8)) padding-box, linear-gradient(#fbfbfb, #c2c2c2);
+}
+.cp-field_input.Hue::-webkit-slider-thumb {
+  background: linear-gradient(hsl(var(--cp-hue), 100%, 50%), hsla(var(--cp-hue), 100%, 50%, 0.8)) padding-box, linear-gradient(#fbfbfb, #c2c2c2);
+}
