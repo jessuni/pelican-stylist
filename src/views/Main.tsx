@@ -10,6 +10,7 @@ import '@/assets/avatar/accs.css'
 import { useRef,useState } from 'react'
 import Tab from '@/components/Tab'
 import TabContent from '@/components/TabContent'
+import ColorPicker from '@/components/ColorPicker'
 import Avatar from '@/views/Avatar'
 import useIntersection from '@/composables/useIntersection'
 import { Item, Footwear, Hat, Top, Bottom, Hair, Accessory } from 'types'
@@ -60,6 +61,7 @@ function Main(): JSX.Element {
   const [hair, setHair] = useState<Hair|null>(null)
   const [accs, setAccs] = useState<Accessory|null>(null)
   const [draggedItem, setDraggedItem] = useState<Item|null>(null)
+  const [hairColor, setHairColor] = useState<string>('4,74%,75%')
 
   const states: States = { hair, hat, top, bottom, shoe, accs }
   const setStates: SetStateActions = {
@@ -71,14 +73,19 @@ function Main(): JSX.Element {
     accs: setAccs,
   }
 
+  const hairStyle = {'--hair-color': hairColor} as React.CSSProperties
+
   return (
-    <main className={$style.main} id="main">
+    <main className={$style.main} id="main" style={hairStyle}>
       <section className={$style.edit}>
-        <Tab>
-          {Object.keys(states).map(k => (
-            <TabContent key={k} title={k} list={data[k]} setActive={setStates[k]} active={states[k]} setDraggedItem={setDraggedItem} />
-          ))}
-        </Tab>
+        <div className={$style.edit_main}>
+          <Tab>
+            {Object.keys(states).map(k => (
+              <TabContent key={k} title={k} list={data[k]} setActive={setStates[k]} active={states[k]} setDraggedItem={setDraggedItem} />
+            ))}
+          </Tab>
+          <ColorPicker color={hairColor} setColor={setHairColor} />
+        </div>
       </section>
       <Avatar className={$style.avatar} inViewport={inViewport} draggedItem={draggedItem} setDraggedItem={setDraggedItem} states={states} setStates={setStates} />
       <section className={$style.export} ref={exportElRef}></section>

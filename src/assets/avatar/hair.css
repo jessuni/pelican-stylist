@@ -377,6 +377,7 @@
   -webkit-mask-size: calc(var(--scale) * 3552px) calc(var(--scale) * 72px);
   mask-repeat: no-repeat;
   -webkit-mask-repeat: no-repeat;
+  background-color: hsl(var(--hair-color));
   width: calc(var(--scale) * 48px);
   height: calc(var(--scale) * 72px);
   background-image: url('./hair.png');

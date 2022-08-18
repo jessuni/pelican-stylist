@@ -9,6 +9,10 @@
   background-image: url('@/assets/galaxy_overlay.png'), linear-gradient(0deg, var(--bg-light-color) 0%, var(--bg-light-color) 100%);
   background-blend-mode: soft-light;
 }
+.edit_main {
+  margin-left: calc(10vw + 5vw + 240px);
+  padding: 0 8vw;
+}
 .avatar,
 .edit,
 .export {

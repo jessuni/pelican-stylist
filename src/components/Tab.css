@@ -1,6 +1,4 @@
 .tab {
-  margin-left: calc(10vw + 5vw + 240px);
-  padding: 0 8vw;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
