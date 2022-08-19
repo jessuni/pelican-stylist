@@ -46,7 +46,7 @@ function ColorPicker({ className, color, setColor }: Props): JSX.Element {
     if (type === 'l') {
       setL(+value)
     }
-    setColor(`${h},${s}%,${l}%`)
+    setColor(`${h},${s}%,${lPercent}%`)
   }
 
   const style = {'--cp-hue': h, '--cp-sat': `${s}%`, '--cp-light': `${l}%`} as React.CSSProperties
