@@ -11,7 +11,14 @@
 }
 .edit_main {
   margin-left: calc(10vw + 5vw + 240px);
-  padding: 0 8vw;
+  padding: 4vw;
+  max-width: 50%;
+  position: absolute;
+  right: 4vw;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  box-shadow: rgb(38 57 77 / 30%) 0px 20px 30px -10px;
 }
 .avatar,
 .edit,

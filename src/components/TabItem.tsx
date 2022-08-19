@@ -13,10 +13,9 @@ const TabItem: React.FC<Props> = ({ activeTab, setActiveTab, title, src }) => {
     className += ' active'
   }
   return (
-    <label className={className}>
+    <label className={className} title={title}>
       <input type="radio" name="tab" value={title} onChange={(e) => setActiveTab(e.target.value)} />
       <img alt={title} src={src} loading="lazy" />
-      <span>{title}</span>
     </label>
   )
 }

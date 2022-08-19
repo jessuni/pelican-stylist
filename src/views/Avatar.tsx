@@ -44,7 +44,6 @@ function Avatar({ className, inViewport, draggedItem, setDraggedItem, states, se
   const dropHandler = (e: React.DragEvent<HTMLDivElement>):void => {
     e.preventDefault()
     let el = e.target as HTMLElement
-    console.log(el.nodeName, el)
     if (el.classList.contains('slot-img')) {
       el = el.parentElement as HTMLElement
     }

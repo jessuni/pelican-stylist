@@ -2,6 +2,9 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  width: 100%;
+  --tab-bg-color: var(--el-bg-color);
+  --tab-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.25), inset -2px -2px 2px rgb(0, 0, 0, 0.25);
 }
 .tab nav {
   background: rgba(255, 255, 255, 0.3);
@@ -29,8 +32,8 @@
   left: 0;
   top: 0;
   bottom: 0;
-  width: 100px;
-  border-radius: 100vw;
+  width: 3em;
+  border-radius: 50%;
   background: var(--tab-bg-color);
   box-shadow: var(--tab-shadow);
   z-index: 1;
