@@ -2,6 +2,7 @@ import './TabContent.css'
 import { Item } from 'types'
 
 type Props<T = Item> = {
+  style?: React.CSSProperties
   list: T[]
   title: string
   active: T | null
@@ -9,7 +10,7 @@ type Props<T = Item> = {
   setDraggedItem: (item: T | null) => void
 }
 
-const TabContent = <T extends Item,>({ list, active, setActive, setDraggedItem }: Props<T>): JSX.Element => {
+const TabContent = <T extends Item,>({ style, list, active, setActive, setDraggedItem }: Props<T>): JSX.Element => {
   const dragStartHandler = (item: T): void => {
     setDraggedItem(item)
   }
@@ -21,7 +22,7 @@ const TabContent = <T extends Item,>({ list, active, setActive, setDraggedItem }
     setActive(target)
   }
   return (
-    <ul className="tab-list">
+    <ul className="tab-list" style={style}>
       {list.map(item => {
         let className = 'tab-list_item'
         if (active && item.id === active.id) {

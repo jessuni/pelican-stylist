@@ -7,6 +7,7 @@ import { States, SetStateActions } from './Main'
 import avatar_bg_light from '@/assets/avatar/light.png'
 
 type Props = {
+  style?: React.CSSProperties
   inViewport: boolean
   draggedItem: Item | null
   setDraggedItem: React.Dispatch<React.SetStateAction<Item | null>>
@@ -15,7 +16,7 @@ type Props = {
   className: string | null
 }
 
-function Avatar({ className, inViewport, draggedItem, setDraggedItem, states, setStates }: Props):JSX.Element {
+function Avatar({ style, className, inViewport, draggedItem, setDraggedItem, states, setStates }: Props):JSX.Element {
   const outfitRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (outfitRef && outfitRef.current) {
@@ -59,7 +60,7 @@ function Avatar({ className, inViewport, draggedItem, setDraggedItem, states, se
   }
 
   return (
-    <section className={`${$style.container} ${className}${inViewport ? ' ' + $style.overview : ''}`}>
+    <section className={`${$style.container} ${className}${inViewport ? ' ' + $style.overview : ''}`} style={style}>
       <div className={$style.avatar}>
         <div className={$style.display}>
           <img src={avatar_bg_light} alt="avatar in light background" />
