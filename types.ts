@@ -54,3 +54,14 @@ export interface Accessory extends Item {
   type: 'accs'
   initial: true
 }
+
+export type ItemState = {
+  shoe: Footwear | null
+  hat: Hat | null
+  top: Top | null
+  bottom: Bottom | null
+  hair: Hair | null
+  accs: Accessory | null
+}
+
+export type ItemAction = { type: keyof ItemState, payload: Item | null }

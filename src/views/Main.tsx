@@ -7,22 +7,20 @@ import '@/assets/avatar/bottom.css'
 import '@/assets/avatar/shoe.css'
 import '@/assets/avatar/accs.css'
 
-import { useRef,useState, useMemo } from 'react'
+import { useRef,useState, useReducer, useMemo } from 'react'
 import Tab from '@/components/Tab'
 import TabContent from '@/components/TabContent'
 import ColorPicker from '@/components/ColorPicker'
 import Avatar from '@/views/Avatar'
 import useIntersection from '@/composables/useIntersection'
-import { Item, Footwear, Hat, Top, Bottom, Hair, Accessory } from 'types'
+import { Footwear, Hat, Top, Bottom, Hair, Accessory, ItemState, ItemAction } from 'types'
 
 import _shoes from '@data/shoes.json'
 import _hats from '@data/hats.json'
 import _tops from '@data/tops.json'
 import _bottoms from '@data/bottoms.json'
 
-export type States = { [key: string]: Item | null }
-export type SetStateActions = { [key: string]: React.Dispatch<React.SetStateAction<any>> }
-type Data = { [key:string]: Item[] }
+type Data = { [Property in keyof ItemState]: NonNullable<ItemState[Property]>[] }
 
 const data: Data = {
   shoe: _shoes as Footwear[],
@@ -54,40 +52,41 @@ const data: Data = {
 function Main(): JSX.Element {
   const exportElRef = useRef<HTMLElement>(null)
   const inViewport = useIntersection(exportElRef)
-  const [shoe, setShoe] = useState<Footwear|null>(null)
-  const [hat, setHat] = useState<Hat|null>(null)
-  const [top, setTop] = useState<Top|null>(null)
-  const [bottom, setBottom] = useState<Bottom|null>(null)
-  const [hair, setHair] = useState<Hair|null>(null)
-  const [accs, setAccs] = useState<Accessory|null>(null)
-  const [draggedItem, setDraggedItem] = useState<Item|null>(null)
-  const [hairColor, setHairColor] = useState<string>('4,74%,75%')
 
-  const states: States = { hair, hat, top, bottom, shoe, accs }
-  const setStates: SetStateActions = {
-    hair: setHair,
-    hat: setHat,
-    top: setTop,
-    bottom: setBottom,
-    shoe: setShoe,
-    accs: setAccs,
+  const reducer: React.Reducer<ItemState, ItemAction> = (state, action) => {
+    const { type, payload } = action
+    return { ...state, [type]: payload }
   }
 
+  const [state, dispatch] = useReducer(reducer, {
+    hair: null,
+    hat: null,
+    top: null,
+    bottom: null,
+    shoe: null,
+    accs: null,
+  } as ItemState)
+
+  const [draggedItem, setDraggedItem] = useState<ItemState[keyof ItemState]>(null)
+  const [hairColor, setHairColor] = useState<string>('4,74%,75%')
+
   const hairStyle = useMemo(() => ({'--hair-color': hairColor} as React.CSSProperties), [hairColor])
+
+  const itemTypes = Object.keys(state) as (keyof ItemState)[]
 
   return (
     <main className={$style.main} id="main">
       <section className={$style.edit}>
         <div className={$style.edit_main}>
           <Tab>
-            {Object.keys(states).map(k => (
-              <TabContent key={k} title={k} list={data[k]} setActive={setStates[k]} active={states[k]} setDraggedItem={setDraggedItem} style={hairStyle} />
+            {itemTypes.map(k => (
+              <TabContent key={k} title={k} list={data[k]} setActive={(payload) => dispatch({ type: k, payload })} active={state[k]} setDraggedItem={setDraggedItem} style={hairStyle} />
             ))}
           </Tab>
           <ColorPicker color={hairColor} setColor={setHairColor} />
         </div>
       </section>
-      <Avatar className={$style.avatar} inViewport={inViewport} draggedItem={draggedItem} setDraggedItem={setDraggedItem} states={states} setStates={setStates} style={hairStyle} />
+      <Avatar className={$style.avatar} inViewport={inViewport} draggedItem={draggedItem} setDraggedItem={setDraggedItem} states={state} dispatch={dispatch} style={hairStyle} />
       <section className={$style.export} ref={exportElRef}></section>
     </main>
   )

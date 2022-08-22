@@ -1,25 +1,25 @@
 import './TabContent.css'
-import { Item } from 'types'
+import { ItemState } from 'types'
 
-type Props<T = Item> = {
+type Props<T> = {
   style?: React.CSSProperties
-  list: T[]
+  list: NonNullable<T>[]
   title: string
-  active: T | null
-  setActive: (item: T | null) => void
-  setDraggedItem: (item: T | null) => void
+  active: T
+  setActive: (item: T) => void
+  setDraggedItem: React.Dispatch<React.SetStateAction<T>>
 }
 
-const TabContent = <T extends Item,>({ style, list, active, setActive, setDraggedItem }: Props<T>): JSX.Element => {
+const TabContent = <T extends ItemState[keyof ItemState],>({ style, list, active, setActive, setDraggedItem }: Props<T>): JSX.Element => {
   const dragStartHandler = (item: T): void => {
     setDraggedItem(item)
   }
   const dragEndHandler = (): void => {
-    setDraggedItem(null)
+    setDraggedItem(null as T)
   }
-  const setActiveItem = (item: T): void => {
+  const setActiveItem = (item: NonNullable<T>): void => {
     const target = active && active.id === item.id ? null : item
-    setActive(target)
+    setActive(target as T)
   }
   return (
     <ul className="tab-list" style={style}>
