@@ -80,13 +80,27 @@ function Main(): JSX.Element {
         <div className={$style.edit_main}>
           <Tab>
             {itemTypes.map(k => (
-              <TabContent key={k} title={k} list={data[k]} setActive={(payload) => dispatch({ type: k, payload })} active={state[k]} setDraggedItem={setDraggedItem} style={hairStyle} />
+              <TabContent
+                key={k}
+                title={k}
+                list={data[k]}
+                setActive={(payload) => dispatch({ type: k, payload })}
+                active={state[k]}
+                setDraggedItem={setDraggedItem}
+                style={hairStyle}
+              />
             ))}
           </Tab>
           <ColorPicker color={hairColor} setColor={setHairColor} />
         </div>
       </section>
-      <Avatar className={$style.avatar} inViewport={inViewport} draggedItem={draggedItem} setDraggedItem={setDraggedItem} states={state} dispatch={dispatch} style={hairStyle} />
+      <Avatar
+        className={`${$style.avatar} ${inViewport ? $style.overview : ''}`}
+        draggedItem={draggedItem}
+        setDraggedItem={setDraggedItem}
+        states={state} dispatch={dispatch}
+        style={hairStyle}
+      />
       <section className={$style.export} ref={exportElRef}></section>
     </main>
   )

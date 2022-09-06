@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 let observerOptions: IntersectionObserverInit = {
   rootMargin: '0px',
-  threshold: 0.3,
+  threshold: 0.5,
 }
 export default function useIntersection(
   elRef: React.RefObject<HTMLElement>,

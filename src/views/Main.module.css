@@ -30,3 +30,16 @@
   position: relative;
   min-height: 100vh;
 }
+.avatar {
+  position: absolute;
+  left: 25%;
+  top: 0;
+  width: fit-content;
+  height: 200vh;
+  transform: translateX(-25%);
+  transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s, left cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+}
+.avatar.overview {
+  left: 50%;
+  transform: translateX(-50%);
+}
