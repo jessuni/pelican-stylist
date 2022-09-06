@@ -4,6 +4,7 @@ import '@/assets/avatar/hat.css'
 import '@/assets/avatar/hair.css'
 import '@/assets/avatar/top.css'
 import '@/assets/avatar/bottom.css'
+import '@/assets/avatar/bottom_worn.css'
 import '@/assets/avatar/shoe.css'
 import '@/assets/avatar/accs.css'
 

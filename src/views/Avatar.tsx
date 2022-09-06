@@ -58,6 +58,15 @@ function Avatar({ style, className, draggedItem, setDraggedItem, states, dispatc
   }
 
   const itemTypes = Object.keys(states) as (keyof ItemState)[]
+  const itemList = itemTypes.map(k => {
+    // Bottom image, when worn, is different from it as an item
+    const type = states[k]?.type === 'bottom' ? 'bottom_worn' : k
+    return states[k as keyof ItemState]
+      ? <div className={$style['' + k]} key={k}>
+          <div className={`${type} ${type}_${states[k]?.id}`}></div>
+        </div>
+      : null
+  })
 
   return (
     <section className={className} style={style}>
@@ -70,13 +79,7 @@ function Avatar({ style, className, draggedItem, setDraggedItem, states, dispatc
           <div className={$style.arm}>
             <div className="arm_female" role="img" aria-label="avatar arm"></div>
           </div>
-          {itemTypes.map(k => {
-            return states[k as keyof ItemState]
-              ? <div className={$style['' + k]} key={k}>
-                  <div className={`${k} ${states[k]?.type}_${states[k]?.id}`}></div>
-                </div>
-              : null
-          })}
+          {itemList}
           <div className={$style.skin}></div>
           <div className={$style.eyes}></div>
         </div>

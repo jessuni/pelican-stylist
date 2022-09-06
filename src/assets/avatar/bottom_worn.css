@@ -1,0 +1,51 @@
+.bottom_worn_4001 {
+  background-position: calc(var(--scale) * 0);
+}
+.bottom_worn_4002 {
+  background-position: calc(var(--scale) * -48px);
+}
+.bottom_worn_4003 {
+  background-position: calc(var(--scale) * -96px);
+}
+.bottom_worn_4004 {
+  background-position: calc(var(--scale) * -144px);
+}
+.bottom_worn_4005 {
+  background-position: calc(var(--scale) * -192px);
+}
+.bottom_worn_4006 {
+  background-position: calc(var(--scale) * -240px);
+}
+.bottom_worn_4007 {
+  background-position: calc(var(--scale) * -288px);
+}
+.bottom_worn_4008 {
+  background-position: calc(var(--scale) * -336px);
+}
+.bottom_worn_4009 {
+  background-position: calc(var(--scale) * -384px);
+}
+.bottom_worn_4010 {
+  background-position: calc(var(--scale) * -432px);
+}
+.bottom_worn_4011 {
+  background-position: calc(var(--scale) * -480px);
+}
+.bottom_worn_4012 {
+  background-position: calc(var(--scale) * -528px);
+}
+.bottom_worn_4013 {
+  background-position: calc(var(--scale) * -576px);
+}
+.bottom_worn_4014 {
+  background-position: calc(var(--scale) * -336px);
+}
+.bottom_worn_4015 {
+  background-position: calc(var(--scale) * -624px);
+}
+.bottom_worn {
+  width: calc(var(--scale) * 48px);
+  height: calc(var(--scale) * 48px);
+  background-image: url('./bottom_worn.png');
+  background-size: calc(var(--scale) * 672px) calc(var(--scale) * 48px); background-repeat: repeat-x;
+}

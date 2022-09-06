@@ -13,8 +13,13 @@ function Slot ({ type, active, onDrop, onDel }: Props<Item>) {
   const onDragOver = (e: React.DragEvent<HTMLDivElement>): void => {
     e.preventDefault()
   }
-  const children = active ? (<div className={`slot-img ${active.type} ${active.type}_${active.id}`} aria-label={active.name} onClick={onDel} onDragStart={onDel} tab-index="0" />) : null
-  const url = new URL(`../assets/${type}.svg`, import.meta.url).href
+  let children = null
+  let typeName = type
+  if (active) {
+    typeName = active.type === 'bottom' ? 'bottom_worn' : type
+    children = (<div className={`slot-img ${typeName} ${typeName}_${active.id}`} aria-label={active.name} onClick={onDel} onDragStart={onDel} tab-index="0" />)
+  }
+  const url = new URL(`../assets/${typeName}.svg`, import.meta.url).href
   return (
     <div onDragOver={onDragOver} onDrop={onDrop} data-name={type} className="slot">
       <div className={`slot-bg${active ? ' hide': ''}`} style={{ backgroundImage: `url(${url})` }}></div>
