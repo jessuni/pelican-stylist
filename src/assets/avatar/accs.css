@@ -61,3 +61,13 @@
   background-image: url('./accs.png');
   background-size: calc(var(--scale) * 912px) calc(var(--scale) * 48px); background-repeat: repeat-x;
 }
+.accs.dyable {
+  background-blend-mode: multiply;
+  mask-type: luminance;
+  mask-image: url('./accs.png');
+  -webkit-mask-image: url('./accs.png');
+  mask-size: calc(var(--scale) * 912px) calc(var(--scale) * 48px);
+  -webkit-mask-size: calc(var(--scale) * 912px) calc(var(--scale) * 48px);
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;background-color: hsl(var(--accs-color));
+}

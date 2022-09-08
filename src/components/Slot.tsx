@@ -17,7 +17,8 @@ function Slot ({ type, active, onDrop, onDel }: Props<Item>) {
   let typeName = type
   if (active) {
     typeName = active.type === 'bottom' ? 'bottom_worn' : type
-    children = (<div className={`slot-img ${typeName} ${typeName}_${active.id}`} aria-label={active.name} onClick={onDel} onDragStart={onDel} tab-index="0" />)
+    const dyable = active.dyable ? ' dyable' : ''
+    children = (<div className={`slot-img ${typeName} ${typeName}_${active.id}${dyable}`} aria-label={active.name} onClick={onDel} onDragStart={onDel} tab-index="0" />)
   }
   const url = new URL(`../assets/${typeName}.svg`, import.meta.url).href
   return (

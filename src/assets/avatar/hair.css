@@ -369,6 +369,12 @@
   -webkit-mask-position: calc(var(--scale) * -3504px);
 }
 .hair {
+  width: calc(var(--scale) * 48px);
+  height: calc(var(--scale) * 72px);
+  background-image: url('./hair.png');
+  background-size: calc(var(--scale) * 3552px) calc(var(--scale) * 72px); background-repeat: repeat-x;
+}
+.hair.dyable {
   background-blend-mode: multiply;
   mask-type: luminance;
   mask-image: url('./hair.png');
@@ -376,10 +382,5 @@
   mask-size: calc(var(--scale) * 3552px) calc(var(--scale) * 72px);
   -webkit-mask-size: calc(var(--scale) * 3552px) calc(var(--scale) * 72px);
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  background-color: hsl(var(--hair-color));
-  width: calc(var(--scale) * 48px);
-  height: calc(var(--scale) * 72px);
-  background-image: url('./hair.png');
-  background-size: calc(var(--scale) * 3552px) calc(var(--scale) * 72px); background-repeat: repeat-x;
+  -webkit-mask-repeat: no-repeat;background-color: hsl(var(--hair-color));
 }

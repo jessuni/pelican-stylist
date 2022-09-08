@@ -58,3 +58,13 @@
   background-image: url('./shoe.png');
   background-size: calc(var(--scale) * 864px) calc(var(--scale) * 48px); background-repeat: repeat-x;
 }
+.shoe.dyable {
+  background-blend-mode: multiply;
+  mask-type: luminance;
+  mask-image: url('./shoe.png');
+  -webkit-mask-image: url('./shoe.png');
+  mask-size: calc(var(--scale) * 864px) calc(var(--scale) * 48px);
+  -webkit-mask-size: calc(var(--scale) * 864px) calc(var(--scale) * 48px);
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;background-color: hsl(var(--shoe-color));
+}

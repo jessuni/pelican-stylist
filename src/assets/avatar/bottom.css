@@ -69,6 +69,12 @@
   -webkit-mask-position: calc(var(--scale) * -624px);
 }
 .bottom {
+  width: calc(var(--scale) * 48px);
+  height: calc(var(--scale) * 48px);
+  background-image: url('./bottom.png');
+  background-size: calc(var(--scale) * 672px) calc(var(--scale) * 48px); background-repeat: repeat-x;
+}
+.bottom.dyable {
   background-blend-mode: multiply;
   mask-type: luminance;
   mask-image: url('./bottom.png');
@@ -76,10 +82,5 @@
   mask-size: calc(var(--scale) * 672px) calc(var(--scale) * 48px);
   -webkit-mask-size: calc(var(--scale) * 672px) calc(var(--scale) * 48px);
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  background-color: hsl(var(--bottom-color));
-  width: calc(var(--scale) * 48px);
-  height: calc(var(--scale) * 48px);
-  background-image: url('./bottom.png');
-  background-size: calc(var(--scale) * 672px) calc(var(--scale) * 48px); background-repeat: repeat-x;
+  -webkit-mask-repeat: no-repeat;background-color: hsl(var(--bottom-color));
 }

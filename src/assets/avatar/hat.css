@@ -286,3 +286,13 @@
   background-image: url('./hat.png');
   background-size: calc(var(--scale) * 4512px) calc(var(--scale) * 48px); background-repeat: repeat-x;
 }
+.hat.dyable {
+  background-blend-mode: multiply;
+  mask-type: luminance;
+  mask-image: url('./hat.png');
+  -webkit-mask-image: url('./hat.png');
+  mask-size: calc(var(--scale) * 4512px) calc(var(--scale) * 48px);
+  -webkit-mask-size: calc(var(--scale) * 4512px) calc(var(--scale) * 48px);
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;background-color: hsl(var(--hat-color));
+}

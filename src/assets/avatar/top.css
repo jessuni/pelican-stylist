@@ -889,3 +889,13 @@
   background-image: url('./top.png');
   background-size: calc(var(--scale) * 9440px) calc(var(--scale) * 32px); background-repeat: repeat-x;
 }
+.top.dyable {
+  background-blend-mode: multiply;
+  mask-type: luminance;
+  mask-image: url('./top.png');
+  -webkit-mask-image: url('./top.png');
+  mask-size: calc(var(--scale) * 9440px) calc(var(--scale) * 32px);
+  -webkit-mask-size: calc(var(--scale) * 9440px) calc(var(--scale) * 32px);
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;background-color: hsl(var(--top-color));
+}

@@ -28,11 +28,12 @@ const TabContent = <T extends ItemState[keyof ItemState],>({ style, list, active
         if (active && item.id === active.id) {
           className += ' active'
         }
+        const dyable = item.dyable ? ' dyable' : ''
       return (
         <li className={className} key={item.id}>
           <button onClick={() => setActiveItem(item)}>
             <span
-              className={item.type + ' ' + item.type + '_' + item.id}
+              className={`${item.type} ${item.type}_${item.id}${dyable}`}
               role="img"
               aria-label={item.name}
               draggable={true}

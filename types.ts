@@ -13,6 +13,7 @@ export interface Item {
   href?: string
   description?: string
   obtain?: string[]
+  dyable: boolean
 }
 
 export interface Top extends Item {
@@ -32,6 +33,7 @@ export interface Hat extends Item {
   type: 'hat'
   initial: false
   recipe: Recipe[]
+  dyable: false
 }
 
 export interface Footwear extends Item {
@@ -43,16 +45,19 @@ export interface Footwear extends Item {
     type: string
     degree: number
   }
+  dyable: false
 }
 
 export interface Hair extends Item {
   type: 'hair'
   initial: true
+  dyable: true
 }
 
 export interface Accessory extends Item {
   type: 'accs'
   initial: true
+  dyable: false
 }
 
 export type ItemState = {
@@ -65,3 +70,12 @@ export type ItemState = {
 }
 
 export type ItemAction = { type: keyof ItemState, payload: Item | null }
+
+export type ColorState = {
+  top: string
+  bottom: string
+  hair: string
+  shoe: string
+}
+
+export type ColorAction = { type: keyof ColorState, payload: string }

@@ -9,12 +9,12 @@ type Props = {
   style?: React.CSSProperties
   draggedItem: ItemState[keyof ItemState]
   setDraggedItem: React.Dispatch<React.SetStateAction<ItemState[keyof ItemState]>>
-  states: ItemState
+  state: ItemState
   dispatch: React.Dispatch<ItemAction>
   className: string
 }
 
-function Avatar({ style, className, draggedItem, setDraggedItem, states, dispatch }: Props):JSX.Element {
+function Avatar({ style, className, draggedItem, setDraggedItem, state, dispatch }: Props):JSX.Element {
   const outfitRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (outfitRef && outfitRef.current) {
@@ -57,13 +57,14 @@ function Avatar({ style, className, draggedItem, setDraggedItem, states, dispatc
     dispatch({ type: el.getAttribute('data-name') as keyof ItemState, payload: null })
   }
 
-  const itemTypes = Object.keys(states) as (keyof ItemState)[]
+  const itemTypes = Object.keys(state) as (keyof ItemState)[]
   const itemList = itemTypes.map(k => {
     // Bottom image, when worn, is different from it as an item
-    const type = states[k]?.type === 'bottom' ? 'bottom_worn' : k
-    return states[k as keyof ItemState]
+    const type = state[k]?.type === 'bottom' ? 'bottom_worn' : k
+    const dyable = state[k]?.dyable ? ' dyable' : ''
+    return state[k as keyof ItemState]
       ? <div className={$style['' + k]} key={k}>
-          <div className={`${type} ${type}_${states[k]?.id}`}></div>
+          <div className={`${type} ${type}_${state[k]?.id}${dyable}`}></div>
         </div>
       : null
   })
@@ -85,7 +86,7 @@ function Avatar({ style, className, draggedItem, setDraggedItem, states, dispatc
         </div>
         <div className={$style.outfit} ref={outfitRef}>
           {itemTypes.map(k => {
-            return <Slot key={k} type={k} active={states[k]} onDrop={dropHandler} onDel={delHandler} />
+            return <Slot key={k} type={k} active={state[k]} onDrop={dropHandler} onDel={delHandler} />
           })}
         </div>
       </div>

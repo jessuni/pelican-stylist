@@ -5,7 +5,7 @@ import { useReducer, useMemo, useEffect } from 'react'
 type Props = {
   className?: string
   color: string
-  setColor: React.Dispatch<React.SetStateAction<string>>
+  setColor: (value: string) => void
 }
 
 type State = {
