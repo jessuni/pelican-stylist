@@ -1,6 +1,6 @@
 import './ColorPicker.css'
 
-import { useReducer, useMemo, useEffect } from 'react'
+import { useReducer, useMemo, useEffect, ChangeEvent } from 'react'
 
 type Props = {
   className?: string
@@ -16,33 +16,22 @@ type State = {
 
 type Action = {
   type: keyof State
-  payload: React.ChangeEvent<HTMLInputElement>
+  payload: number | string
 }
 
 const HUE_RANGE = 360
 const SAT_RANGE = 100
 // max lightness in game is 50%
 const LIGHT_RANGE = 50
-const HSL_RANGES = [HUE_RANGE, SAT_RANGE, LIGHT_RANGE]
 const PER_RANGE = 100
 // the max color value in game is 99 not 100
 const MAX_VALUE = 99
 
-function rangeToPercentage(string: string, range: number, replaceMark: string = '%') {
-  string = string.replace(replaceMark, '')
-  return Math.round(+string * range / PER_RANGE)
-}
-
-
 function ColorPicker({ className, color, setColor }: Props): JSX.Element {
-  const hsl = color.split(',')
-  const [h, s, l] = hsl.map((_, i) => {
-    return rangeToPercentage(hsl[i], HSL_RANGES[i])
-  })
-  const initState = { h, s, l }
+  const initState = { h: 0, s: 0, l: 0 }
   const reducer: React.Reducer<State, Action> = (state, action) => {
     const { type, payload } = action
-    return { ...state, [type]: +payload.target.value }
+    return { ...state, [type]: +payload }
   }
   const [state, dispatch] = useReducer(reducer, initState)
 
@@ -50,11 +39,29 @@ function ColorPicker({ className, color, setColor }: Props): JSX.Element {
   const sPercent = useMemo(() => Math.round(state.s * PER_RANGE / SAT_RANGE), [state.s])
   const lPercent = useMemo(() => Math.round(state.l * PER_RANGE / LIGHT_RANGE), [state.l])
   useEffect(() => {
-    setColor(`${state.h},${state.s}%,${lPercent}%`)
-  }, [state])
+    let [h, s, l] = color.split(',').map(i => parseFloat(i.replace('%', '')))
+    dispatch({ type: 'h', payload: h })
+    dispatch({ type: 's', payload: s })
+    dispatch({ type: 'l', payload: l })
+  }, [color])
+
+  const onInputChange = (type: keyof State, e: ChangeEvent<HTMLInputElement>) => {
+    const val = +e.target.value
+    let [h, s, l] = color.split(',').map(i => parseFloat(i.replace('%', '')))
+    if (type === 'h') {
+      h = val
+    }
+    if (type === 's') {
+      s = val
+    }
+    if (type === 'l') {
+      l = val
+    }
+    setColor(`${h},${s}%,${l}%`)
+  }
 
   const style = {'--cp-hue': state.h, '--cp-sat': `${state.s}%`, '--cp-light': `${state.l}%`} as React.CSSProperties
-  const maxHue = MAX_VALUE * HUE_RANGE / PER_RANGE
+  const maxHue = 100 * HUE_RANGE / PER_RANGE
   const maxSat = MAX_VALUE * SAT_RANGE / PER_RANGE
   const maxLight = MAX_VALUE * LIGHT_RANGE / PER_RANGE
   return(
@@ -62,17 +69,17 @@ function ColorPicker({ className, color, setColor }: Props): JSX.Element {
       <label className="cp-field">
         <span className="cp-field_name">Hue</span>
         <span className="cp-field_value">{hPercent}</span>
-        <input className="cp-field_input Hue" type="range" min="0" max={maxHue} step={HUE_RANGE / PER_RANGE} value={state.h} onChange={(e) => dispatch({ type: 'h', payload: e })}></input>
+        <input className="cp-field_input Hue" type="range" min="0" max={maxHue} step={HUE_RANGE / PER_RANGE} value={state.h} onChange={(e) => onInputChange('h', e)}></input>
       </label>
       <label className="cp-field">
         <span className="cp-field_name">Saturation</span>
         <span className="cp-field_value">{sPercent}</span>
-        <input className="cp-field_input Sat" type="range" min="0" max={maxSat} step={SAT_RANGE / PER_RANGE} value={state.s} onChange={(e) => dispatch({ type: 's', payload: e })}></input>
+        <input className="cp-field_input Sat" type="range" min="0" max={maxSat} step={SAT_RANGE / PER_RANGE} value={state.s} onChange={(e) => onInputChange('s', e)}></input>
       </label>
       <label className="cp-field">
         <span className="cp-field_name">Lightness</span>
         <span className="cp-field_value">{lPercent}</span>
-        <input className="cp-field_input Light" type="range" min="0" max={maxLight} step={LIGHT_RANGE / PER_RANGE} value={state.l} onChange={(e) => dispatch({ type: 'l', payload: e })}></input>
+        <input className="cp-field_input Light" type="range" min="0" max={maxLight} step={LIGHT_RANGE / PER_RANGE} value={state.l} onChange={(e) => onInputChange('l', e)}></input>
       </label>
     </div>
   )

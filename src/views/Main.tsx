@@ -76,10 +76,10 @@ function Main(): JSX.Element {
     return { ...state, [type]: payload}
   }
   const [colorState, dispatchColor] = useReducer(colorReducer, {
-    top: '0, 0%, 0%',
-    bottom: '30, 80%, 30%',
-    hair: '4,74%,75%',
-    shoe: '0, 0%, 0%',
+    top: '0,0%,0%',
+    bottom: '30,80%,30%',
+    hair: '14,74%,37.5%',
+    shoe: '0,0%,0%',
   })
 
   const [draggedItem, setDraggedItem] = useState<ItemState[keyof ItemState]>(null)
