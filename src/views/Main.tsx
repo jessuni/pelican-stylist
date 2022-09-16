@@ -113,7 +113,7 @@ function Main(): JSX.Element {
             ))}
           </Tab>
           {SHOW_COLOR_PICKER.indexOf(activeTab) !== -1
-    ? <ColorPicker color={colorState[activeTab]} setColor={(payload) => dispatchColor({ type: activeTab, payload })} />
+    ? <ColorPicker color={colorState[activeTab]} setColor={(payload) => dispatchColor({ type: activeTab, payload })} key={colorState[activeTab]} />
     : null}
         </div>
       </section>

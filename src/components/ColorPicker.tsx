@@ -28,7 +28,8 @@ const PER_RANGE = 100
 const MAX_VALUE = 99
 
 function ColorPicker({ className, color, setColor }: Props): JSX.Element {
-  const initState = { h: 0, s: 0, l: 0 }
+  const [h, s, l] = color.split(',').map(i => parseFloat(i.replace('%', '')))
+  const initState = { h, s, l }
   const reducer: React.Reducer<State, Action> = (state, action) => {
     const { type, payload } = action
     return { ...state, [type]: +payload }
@@ -38,25 +39,9 @@ function ColorPicker({ className, color, setColor }: Props): JSX.Element {
   const hPercent = useMemo(() => Math.round(state.h * PER_RANGE / HUE_RANGE), [state.h])
   const sPercent = useMemo(() => Math.round(state.s * PER_RANGE / SAT_RANGE), [state.s])
   const lPercent = useMemo(() => Math.round(state.l * PER_RANGE / LIGHT_RANGE), [state.l])
-  useEffect(() => {
-    let [h, s, l] = color.split(',').map(i => parseFloat(i.replace('%', '')))
-    dispatch({ type: 'h', payload: h })
-    dispatch({ type: 's', payload: s })
-    dispatch({ type: 'l', payload: l })
-  }, [color])
 
   const onInputChange = (type: keyof State, e: ChangeEvent<HTMLInputElement>) => {
-    const val = +e.target.value
-    let [h, s, l] = color.split(',').map(i => parseFloat(i.replace('%', '')))
-    if (type === 'h') {
-      h = val
-    }
-    if (type === 's') {
-      s = val
-    }
-    if (type === 'l') {
-      l = val
-    }
+    dispatch({ type, payload: +e.target.value })
     setColor(`${h},${s}%,${l}%`)
   }
 
